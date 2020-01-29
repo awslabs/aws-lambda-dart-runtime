@@ -124,6 +124,41 @@ currently <code>dart2native</code> only supports building for the platform it is
 <p>You can also register custom events.</p>
 <pre class="language-dart"><code class="language-dart">import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart';
 
+class MyCustomEvent {
+  factory MyCustomEvent.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      MyCustomEvent(json);
+
+  const MyCustomEvent();
+}
+
+void main() async {
+  final Handler&lt;MyCustomEvent&gt; successHandler =
+      (context, event) async {
+    return InvocationResult(context.requestId, "SUCCESS");
+  };
+
+  Runtime()
+    ..registerEvent&lt;MyCustomEvent&gt;((Map&lt;String, dynamic&gt; json) =&gt; MyCustomEvent.from(json))
+    ..registerHandler&lt;MyCustomEvent&gt;("doesnt.matter", successHandler)
+    ..invoke();
+}
+</code></pre>
+<h2 id="example">Example</h2>
+<p>The example in <a href="https://github.com/aws-lambda-dart-runtime/examples/main.dart"><code>examples/main.dart</code></a> is showing how the package is intended to be used. Because <code>dart2native</code> is not supporting cross-platform compilation, you can use the <a href="https://hub.docker.com/r/google/dart/"><code>google/dart</code></a> (:warning: if you are on <code>Linux</code> you can ignore this) container to build the project. The <code>build.sh</code> script is automating the build process in the container.</p>
+<pre class="language-dart"><code>  # will build the binary in the container
+  cd example; docker run -v $PWD:/app --entrypoint app/build.sh google/dart &amp;&amp; zip lambda.zip bootstrap &amp;&amp; rm bootstrap
+</code></pre>
+<p>You will see the <code>lambda.zip</code> which you can upload manually, or use the client of your choice. The building process involves the <code>build.sh</code> script, because we do not want to test the package without the need to publish it.</p>
+<p>What you see im the example is an example of the interface to the Dart Runtime that we created.</p>
+<p>You will have to make <code>aws_lambda_dart_runtime</code> a dependency of your project.</p>
+<pre class="language-dart"><code>...
+dependencies:
+  aws_lambda_dart_runtime:
+...
+</code></pre>
+<p>We support to use multiple handlers in one executable. The following example shows to register one handler.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart';
+
 void main() async {
   /// This demo's handling an API Gateway request.
   final Handler&lt;AwsApiGatewayEvent&gt; helloApiGateway = (context, event) async {
@@ -140,33 +175,6 @@ void main() async {
     ..invoke();
 }
 </code></pre>
-<h2 id="example">Example</h2>
-<p>The example in <a href="https://github.com/aws-lambda-dart-runtime/examples/main.dart"><code>examples/main.dart</code></a> is showing how the package is intended to be used. Because <code>dart2native</code> is not supporting cross-platform compilation, you can use the <code>google/dart</code> (:warning: if you are on <code>Linux</code> you can ignore this) container to build the project. The <code>build.sh</code> script is automating the build process in the container.</p>
-<pre class="language-dart"><code>  # will build the binary in the container
-  cd example; docker run -v $PWD:/app --entrypoint app/build.sh google/dart &amp;&amp; zip lambda.zip bootstrap &amp;&amp; rm bootstrap
-</code></pre>
-<p>You will see the <code>lambda.zip</code> which you can upload manually, or use the client of your choice. The building process involves the <code>build.sh</code> script, because we do not want to test the package without the need to publish it.</p>
-<p>What you see im the example is an example of the interface to the Dart Runtime that we created.</p>
-<p>You will have to make <code>aws_lambda_dart_runtime</code> a dependency of your project.</p>
-<pre class="language-dart"><code>...
-dependencies:
-  aws_lambda_dart_runtime:
-...
-</code></pre>
-<p>We support to use multiple handlers in one executable. The following example shows to register one handler.</p>
-<pre class="language-dart"><code class="language-dart">import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart';
-
-void main() async {
-  final Handler&lt;AwsS3NotificationEvent&gt; successHandler =
-      (context, event) async {
-    return InvocationResult(context.requestId, "SUCCESS");
-  };
-
-  Runtime()
-    ..registerHandler&lt;AwsS3NotificationEvent&gt;("doesnt.matter", successHandler)
-    ..invoke();
-}
-</code></pre>
 <p>This example registers the <code>doesnt.matter</code> handler with the function to execute for this handler. The handler function is types to receive an Amazon S3 event. We support multiple event types. The handlers functions get the specified typed event inject in their context. You can also register your own custom events via <code>Runtime.registerEvent&lt;T&gt;(Handler&lt;T&gt;)</code>.</p>
 <h3 id="deployment">Deployment</h3>
 <p>The deployment is a manual task right now. We have a <a href="https://github.com/aws-lambda-dart-runtime/examples/build.sh"><code>examples/build.sh</code></a> script which make the process a bit easier. There are three steps to get your code ready to be shiped.</p>
@@ -180,7 +188,7 @@ void main() async {
 </blockquote>
 <p>When you created your function and upload it via the the console. Please, replace <code>arn:aws:iam::xxx:xxx</code> with the role you created for your lambda.</p>
 <pre class="language-bash"><code class="language-bash"> aws lambda create-function --function-name dartTest \
-  --handler doesnt.matter \
+  --handler hello.apigateway \
   --zip-file fileb://./lambda.zip \
   --runtime provided \
   --role arn:aws:iam::xxx:xxx \

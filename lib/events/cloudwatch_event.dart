@@ -2,21 +2,25 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'cloudwatch_event.g.dart';
 
-// {
-//   "id": "cdc73f9d-aea9-11e3-9d5a-835b769c0d9c",
-//   "detail-type": "Scheduled Event",
-//   "source": "aws.events",
-//   "account": "{{{account-id}}}",
-//   "time": "1970-01-01T00:00:00Z",
-//   "region": "eu-west-1",
-//   "resources": [
-//     "arn:aws:events:eu-west-1:123456789012:rule/ExampleRule"
-//   ],
-//   "detail": {}
-// }
-
 /// Event that is send via SQS to trigger for an innovation
 /// of a Lambda.
+///
+/// Example
+///
+/// ```
+/// {
+///   "id": "cdc73f9d-aea9-11e3-9d5a-835b769c0d9c",
+///   "detail-type": "Scheduled Event",
+///   "source": "aws.events",
+///   "account": "{{{account-id}}}",
+///   "time": "1970-01-01T00:00:00Z",
+///   "region": "eu-west-1",
+///   "resources": [
+///     "arn:aws:events:eu-west-1:123456789012:rule/ExampleRule"
+///   ],
+///   "detail": {}
+/// }
+/// ```
 @JsonSerializable()
 class AwsCloudwatchEvent {
   /// Resources ...

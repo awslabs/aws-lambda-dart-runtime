@@ -4,7 +4,6 @@ import 'dart:convert';
 
 /// Next invocation data wraps the data from the
 /// invocation endpoint of the Lambda Runtime Interface.
-///
 class NextInvocation {
   static const runtimeRequestId = 'lambda-runtime-aws-request-id';
   static const runtimeDeadlineMs = 'lambda-runtime-aws-deadline-ms';
@@ -14,25 +13,25 @@ class NextInvocation {
   static const runtimeClientContext = 'lambda-runtime-client-context';
   static const runtimeCognitoIdentity = 'lambda-runtime-cognito-identity';
 
-  /// Raw response of the invocation ...
+  /// Raw response of invocation data that we received.
   final Map<String, dynamic> response;
 
-  /// Request Id ...
+  /// Request Id is the identifier of the request.
   final String requestId;
 
-  /// Deadline milliseconds ...
+  /// Deadline milliseconds is the setting for ultimate cancelation of the invocation.
   final String deadlineMs;
 
-  /// Invoked function ARN ...
+  /// Invoked function ARN is the identifier of the function.
   final String invokedFunctionArn;
 
-  /// Tracing id ...
+  /// Tracing id is the identifier for tracing like X-Ray.
   final String traceId;
 
-  /// Client context ...
+  /// Client context is the context that is provided to the function.
   final String clientContext;
 
-  /// Cognito identity ...
+  /// Cognito identity is the identity that maybe is used for authorizing the request.
   final String cognitoIdentity;
 
   /// Digesting a [HttpClientResponse] into a [NextInvocation].

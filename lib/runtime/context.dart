@@ -5,7 +5,7 @@ import '../client/client.dart';
 /// They are either provided via [Platform.environment] or [NextInvocation]
 /// which is the result from the Lambda API.
 ///
-/// Note this should not be used directly.
+/// Note: this should not be used directly.
 class Context {
   /// These are the constants used to map [Platform.environment]
   /// which are specific to the Lambda execution environment.
@@ -30,20 +30,44 @@ class Context {
         invokedFunction: nextInvocation.invokedFunctionArn);
   }
 
+  /// Handler that is used for the invocation of the function
   String handler;
 
+  /// Name of the function that is invoked.
   String functionName;
+
+  /// Version of the function that is invoked.
   String functionVersion;
+
+  /// Memory sized that is allocated to execution of the function.
   String functionMemorySize;
+
+  /// Cloudwatch LogGroup that is associated with the Lambda.
   String logGroupName;
+
+  /// Cloudwach LogStream that is associated with the Lambda.
   String logStreamName;
+
+  /// Region that this function exists in.
   String region;
+
+  /// The execution environment of the function.
   String executionEnv;
+
+  /// Access key that is acquired via STS.
   String accessKey;
+
+  /// Secret access key that is acquired via STS.
   String secretAccessKey;
+
+  /// The session token from STS.
   String sessionToken;
 
+  /// Id of the request.
+  /// You can use this to track the request for the invocation.
   String requestId;
+
+  /// The ARN to identify the function.
   String invokedFunctionArn;
 
   Context(
