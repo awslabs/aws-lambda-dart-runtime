@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "triggerSource": "CustomMessage_SignUp/CustomMessage_ResendCode/CustomMessage_ForgotPassword/CustomMessage_VerifyUserAttribute",
+    "region": "eu-west-1",
+    "userPoolId": "1234567",
+    "userName": "foo",
+    "callerContext": {
+        "awsSdk": "1.0",
+        "clientId": "bar"
+    },
+    "request": {
+        "userAttributes": {
+            "phone_number_verified": false,
+            "email_verified": true
+        },
+        "codeParameter": "12345678"
+    },
+    "response": {
+        "smsMessage": "foo",
+        "emailMessage": "bar",
+        "emailSubject": "foo"
+    }
+}
