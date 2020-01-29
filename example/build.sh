@@ -8,9 +8,10 @@ cd $(mktemp -d)
 
 # pub the app
 cp -Rp /app/* .
+ls -l
 # setup deps
 /usr/lib/dart/bin/pub get
 # build the binary
-/usr/lib/dart/bin/dart2native example/lib/main.dart -o bootstrap
+/usr/lib/dart/bin/dart2native lib/main.dart -o bootstrap
 # move this back to app
-mv bootstrap /app/example/bootstrap
+mv bootstrap /app/bootstrap
