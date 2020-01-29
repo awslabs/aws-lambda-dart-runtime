@@ -62,26 +62,29 @@ You can also register custom events.
 ```dart
 import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart';
 
-void main() async {
-  /// This demo's handling an API Gateway request.
-  final Handler<AwsApiGatewayEvent> helloApiGateway = (context, event) async {
-    final response = {"message": "hello ${context.requestId}"};
+class MyCustomEvent {
+  factory MyCustomEvent.fromJson(Map<String, dynamic> json) =>
+      MyCustomEvent(json);
 
-    /// it returns an encoded response to the gateway
-    return InvocationResult(
-        context.requestId, AwsApiGatewayResponse.fromJson(response));
+  const MyCustomEvent();
+}
+
+void main() async {
+  final Handler<MyCustomEvent> successHandler =
+      (context, event) async {
+    return InvocationResult(context.requestId, "SUCCESS");
   };
 
-  /// The Runtime is a singleton. You can define the handlers as you wish.
   Runtime()
-    ..registerHandler<AwsApiGatewayEvent>("hello.apigateway", helloApiGateway)
+    ..registerEvent<MyCustomEvent>((Map<String, dynamic> json) => MyCustomEvent.from(json))
+    ..registerHandler<MyCustomEvent>("doesnt.matter", successHandler)
     ..invoke();
 }
 ```
 
 ## Example
 
-The example in [`examples/main.dart`](https://github.com/aws-lambda-dart-runtime/examples/main.dart) is showing how the package is intended to be used. Because `dart2native` is not supporting cross-platform compilation, you can use the `google/dart` (:warning: if you are on `Linux` you can ignore this) container to build the project. The `build.sh` script is automating the build process in the container.
+The example in [`examples/main.dart`](https://github.com/aws-lambda-dart-runtime/examples/main.dart) is showing how the package is intended to be used. Because `dart2native` is not supporting cross-platform compilation, you can use the [`google/dart`](https://hub.docker.com/r/google/dart/) (:warning: if you are on `Linux` you can ignore this) container to build the project. The `build.sh` script is automating the build process in the container.
 
 ```
   # will build the binary in the container
@@ -107,13 +110,18 @@ We support to use multiple handlers in one executable. The following example sho
 import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart';
 
 void main() async {
-  final Handler<AwsS3NotificationEvent> successHandler =
-      (context, event) async {
-    return InvocationResult(context.requestId, "SUCCESS");
+  /// This demo's handling an API Gateway request.
+  final Handler<AwsApiGatewayEvent> helloApiGateway = (context, event) async {
+    final response = {"message": "hello ${context.requestId}"};
+
+    /// it returns an encoded response to the gateway
+    return InvocationResult(
+        context.requestId, AwsApiGatewayResponse.fromJson(response));
   };
 
+  /// The Runtime is a singleton. You can define the handlers as you wish.
   Runtime()
-    ..registerHandler<AwsS3NotificationEvent>("doesnt.matter", successHandler)
+    ..registerHandler<AwsApiGatewayEvent>("hello.apigateway", helloApiGateway)
     ..invoke();
 }
 ```
@@ -134,7 +142,7 @@ When you created your function and upload it via the the console. Please, replac
 
 ```bash
  aws lambda create-function --function-name dartTest \
-  --handler doesnt.matter \
+  --handler hello.apigateway \
   --zip-file fileb://./lambda.zip \
   --runtime provided \
   --role arn:aws:iam::xxx:xxx \
