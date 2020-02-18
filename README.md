@@ -20,13 +20,13 @@ This package makes it easy to write your AWS Lambda Functions in Dart.
 
 [Dart](https://dart.dev/) is a unsupported [AWS Lambda](https://aws.amazon.com/lambda/) runtime. However, you can leverage a [custom runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) to use the [Dart](https://dart.dev/) programming language.
 
-There are two ways in which you could use [Dart](https://dart.dev/). Youd could bundle the Dart Runtime in a [Lambda layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) and use JIT compilation to run a Dart program. The other is to compile a shipable binary of the Dart program.
+There are two ways in which you could use [Dart](https://dart.dev/). You could bundle the Dart Runtime in a [Lambda layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) and use JIT compilation within the lambda execution to run a Dart program. The other is to compile a shipable binary of the Dart program.
 
-Dart `>= 2.6` introduced `dart2native`. The [tool](https://dart.dev/tools/dart2native) uses AOT (ahead-of-time) to compile a Dart program to [native x64 machine code](https://dart.dev/platforms). The created standalone executable is native machine code that's compiled from the specific Dart file and its dependencies, plus a small Dart runtime that handles type checking and gargabe collection.
+Dart `>= 2.6` introduced `dart2native`. The [tool](https://dart.dev/tools/dart2native) uses AOT (ahead-of-time) to compile a Dart program to [native x64 machine code](https://dart.dev/platforms). This standalone executable is native machine code that's compiled from the specific Dart file and its dependencies, plus a small Dart runtime that handles type checking and garbage collection.
 
-We decided to use the later approach rather then the just-in-time compilation of Dart files. The main reason for decisionis that we wanted to avoid that we have to ship and maintain a standalone Dart runtime version. We would eventually have to deprecated a version, or always update the version when moving forward. Furthermore, shipping a binary has the advantage of having an always runable version of your function.
+We decided to use the later approach rather then the just-in-time compilation of Dart files. The main reason for this decision is that we wanted to avoid having to ship and maintain a standalone Dart runtime version. We would eventually have to deprecate versions, or always update the version when moving forward. Furthermore, shipping a binary has the advantage of having an always runnable version of your function in addition to performance benefits.
 
-We want to highlight [Firecracker open-source innovation](https://www.youtube.com/watch?v=yDplzXEdBTI) from re:Invent 2019 which gives you a brief overview of [Firecracker](https://firecracker-microvm.github.io/). The underlying technology of AWS Lambda.
+We want to highlight [Firecracker open-source innovation](https://www.youtube.com/watch?v=yDplzXEdBTI) from re:Invent 2019 which gives you a brief overview of [Firecracker](https://firecracker-microvm.github.io/) which is the underlying technology of AWS Lambda.
 
 ## Use
 
@@ -102,16 +102,16 @@ void main() async {
 
 ## Example
 
-The example in [`main.dart`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/lib/main.dart) is showing how the package is intended to be used. Because `dart2native` is not supporting cross-platform compilation, you can use the [`google/dart`](https://hub.docker.com/r/google/dart/) (:warning: if you are on `Linux` you can ignore this) container to build the project. The `build.sh` script is automating the build process in the container.
+The example in [`main.dart`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/lib/main.dart) show how the package is intended to be used. Because `dart2native` does not support cross-platform compilation, you can use the [`google/dart`](https://hub.docker.com/r/google/dart/) (:warning: if you are on `Linux` you can ignore this) container to build the project. The `build.sh` script automates the build process in the container.
 
 ```
   # will build the binary in the container
   cd example; docker run -v $PWD:/app --entrypoint app/build.sh google/dart && zip lambda.zip bootstrap && rm bootstrap
 ```
 
-You will see the `lambda.zip` which you can upload manually, or use the client of your choice. The building process involves the `build.sh` script, because we do not want to test the package without the need to publish it.
+You will see the `lambda.zip` which you can upload manually, or use the client of your choice.
 
-What you see im the example is an example of the interface to the Dart Runtime that we created.
+What you see in the example is an example of the interface to the Dart Runtime that we created.
 
 You will have to make `aws_lambda_dart_runtime` a dependency of your project.
 
@@ -144,11 +144,11 @@ void main() async {
 }
 ```
 
-This example registers the `hello.apigateway` handler with the function to execute for this handler. The handler function is typed to receive a [Amazon API Gateway Event](https://aws.amazon.com/api-gateway) and it returns a response to the invoking gateway. We support many other [events](#events). Handle functions get a `Context` injected with the needed information about the invocation. You can also register your own custom events via `Runtime.registerEvent<T>(Handler<T>)` (see [events](#events)).
+This example registers the `hello.apigateway` handler with the function to execute for this handler. The handler function is typed to receive a [Amazon API Gateway Event](https://aws.amazon.com/api-gateway) and it returns a response to the invoking gateway. We support many other [events](#events). Handler functions get a `Context` injected with the needed information about the invocation. You can also register your own custom events via `Runtime.registerEvent<T>(Handler<T>)` (see [events](#events)).
 
 ### Deployment
 
-The deployment is a manual task right now. We have a [`example/build.sh`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh) script which make the process a bit easier. There are three steps to get your code ready to be shiped.
+The deployment is a manual task right now. We have a [`example/build.sh`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh) script which make the process a bit easier. There are three steps to get your code ready to be shipped.
 
 1. Compile your Dart program with `dart2native main.dart -o bootstrap`
 2. Create a `.zip` file with `zip lambda.zip bootstrap`
