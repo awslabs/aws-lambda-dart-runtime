@@ -3,22 +3,24 @@
 ![Main](https://github.com/awslabs/aws-lambda-dart-runtime/workflows/Main/badge.svg?branch=master)
 [![License Apache 2](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-This package makes it easy to write your AWS Lambda Functions in Dart.
+The package makes it easy to write AWS Lambda functions in the Dart programming language.
+
+> If you want to learn more about the project you can read the [introduction](https://aws.amazon.com/de/blogs/opensource/introducing-a-dart-runtime-for-aws-lambda/).
 
 ## Features
 
-- Performance `< 50ms` on invocation and `< 50MB` memory consumption.
-- No need to ship the Dart runtime standalone
-- Supports custom typed events
-- Supports multiple handlers
-- Supports to write typed events
+- Great performance `< 10ms` on event processing and `< 50MB` memory consumption
+- No need to ship the Dart runtime
+- Multople event handlers
+- Typed events
+- Custom events
 
 > this package requires Dart `>= 2.6`
 > currently `dart2native` only supports building for the platform it is run on, so you must either build on a `Linux` machine or use `docker`
 
 ## Introduction
 
-[Dart](https://dart.dev/) is a unsupported [AWS Lambda](https://aws.amazon.com/lambda/) runtime. However, you can leverage a [custom runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) to use the [Dart](https://dart.dev/) programming language.
+[Dart](https://dart.dev/) is a unsupported [AWS Lambda](https://aws.amazon.com/lambda/) runtime language. However, with a [custom runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) you can support virtually ever programming language.
 
 There are two ways in which you could use [Dart](https://dart.dev/). You could bundle the Dart Runtime in a [Lambda layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) and use JIT compilation within the lambda execution to run a Dart program. The other is to compile a shipable binary of the Dart program.
 
