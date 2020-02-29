@@ -11,7 +11,7 @@ The package makes it easy to write AWS Lambda functions in the Dart programming 
 
 - Great performance `< 10ms` on event processing and `< 50MB` memory consumption
 - No need to ship the Dart runtime
-- Multople event handlers
+- Multiple event handlers
 - Typed events
 - Custom events
 
