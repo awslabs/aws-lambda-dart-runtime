@@ -1,10 +1,10 @@
 #!/bin/sh
 
-# setting cacke folder
+# setting cache folder
 export PUB_CACHE=/tmp
 
 # creating a temporary directory for the build
-cd $(mktemp -d)
+cd "$(mktemp -d)" || exit
 
 # pub the app
 cp -Rp /app/* .
