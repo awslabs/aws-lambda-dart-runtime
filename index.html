@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 0.29.1">
+  <meta name="description" content="aws_lambda_dart_runtime API docs, for the Dart programming language.">
+  <title>aws_lambda_dart_runtime - Dart API docs</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  <!-- header placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/awslabs/aws-lambda-dart-runtime">aws_lambda_dart_runtime package</a></li>
+  </ol>
+  <div class="self-name">aws_lambda_dart_runtime</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="https://github.com/awslabs/aws-lambda-dart-runtime">aws_lambda_dart_runtime package</a></li>
+    </ol>
+    
+    <h5 class="hidden-xs"><span class="package-name">aws_lambda_dart_runtime</span> <span class="package-kind">package</span></h5>
+    <ol>
+          <li class="section-title">Libraries</li>
+          <li><a href="events_alb_event/events_alb_event-library.html">alb_event</a></li>
+          <li><a href="events_alexa_event/events_alexa_event-library.html">alexa_event</a></li>
+          <li><a href="events_apigateway_event/events_apigateway_event-library.html">apigateway_event</a></li>
+          <li><a href="events_appsync_event/events_appsync_event-library.html">appsync_event</a></li>
+          <li><a href="aws_lambda_dart_runtime/aws_lambda_dart_runtime-library.html">aws_lambda_dart_runtime</a></li>
+          <li><a href="client_client/client_client-library.html">client</a></li>
+          <li><a href="events_cloudwatch_event/events_cloudwatch_event-library.html">cloudwatch_event</a></li>
+          <li><a href="events_cloudwatch_log_event/events_cloudwatch_log_event-library.html">cloudwatch_log_event</a></li>
+          <li><a href="events_cognito_event/events_cognito_event-library.html">cognito_event</a></li>
+          <li><a href="runtime_context/runtime_context-library.html">context</a></li>
+          <li><a href="events_dynamodb_event/events_dynamodb_event-library.html">dynamodb_event</a></li>
+          <li><a href="runtime_event/runtime_event-library.html">event</a></li>
+          <li><a href="events_kinesis_data_firehose_event/events_kinesis_data_firehose_event-library.html">kinesis_data_firehose_event</a></li>
+          <li><a href="events_kinesis_data_stream_event/events_kinesis_data_stream_event-library.html">kinesis_data_stream_event</a></li>
+          <li><a href="runtime_runtime/runtime_runtime-library.html">runtime</a></li>
+          <li><a href="events_s3_event/events_s3_event-library.html">s3_event</a></li>
+          <li><a href="events_sqs_event/events_sqs_event-library.html">sqs_event</a></li>
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <section class="desc markdown">
+        <h1 id="dart-runtime-for-aws-lambda">Dart Runtime for AWS Lambda</h1>
+<p><img src="https://github.com/awslabs/aws-lambda-dart-runtime/workflows/Main/badge.svg?branch=master" alt="Main">
+<a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/License-Apache2-blue.svg" alt="License Apache 2"></a></p>
+<p>The package makes it easy to write AWS Lambda functions in the Dart programming language.</p>
+<blockquote>
+<p>If you want to learn more about the project you can read the <a href="https://aws.amazon.com/de/blogs/opensource/introducing-a-dart-runtime-for-aws-lambda/">introduction</a>.</p>
+</blockquote>
+<h2 id="features">Features</h2>
+<ul>
+<li>Great performance <code>&lt; 10ms</code> on event processing and <code>&lt; 50MB</code> memory consumption</li>
+<li>No need to ship the Dart runtime</li>
+<li>Multople event handlers</li>
+<li>Typed events</li>
+<li>Custom events</li>
+</ul>
+<blockquote>
+<p>this package requires Dart <code>&gt;= 2.6</code>
+currently <code>dart2native</code> only supports building for the platform it is run on, so you must either build on a <code>Linux</code> machine or use <code>docker</code></p>
+</blockquote>
+<h2 id="introduction">Introduction</h2>
+<p><a href="https://dart.dev/">Dart</a> is a unsupported <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> runtime language. However, with a <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html">custom runtime</a> you can support virtually ever programming language.</p>
+<p>There are two ways in which you could use <a href="https://dart.dev/">Dart</a>. You could bundle the Dart Runtime in a <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layer</a> and use JIT compilation within the lambda execution to run a Dart program. The other is to compile a shipable binary of the Dart program.</p>
+<p>Dart <code>&gt;= 2.6</code> introduced <code>dart2native</code>. The <a href="https://dart.dev/tools/dart2native">tool</a> uses AOT (ahead-of-time) to compile a Dart program to <a href="https://dart.dev/platforms">native x64 machine code</a>. This standalone executable is native machine code that's compiled from the specific Dart file and its dependencies, plus a small Dart runtime that handles type checking and garbage collection.</p>
+<p>We decided to use the later approach rather then the just-in-time compilation of Dart files. The main reason for this decision is that we wanted to avoid having to ship and maintain a standalone Dart runtime version. We would eventually have to deprecate versions, or always update the version when moving forward. Furthermore, shipping a binary has the advantage of having an always runnable version of your function in addition to performance benefits.</p>
+<p>We want to highlight <a href="https://www.youtube.com/watch?v=yDplzXEdBTI">Firecracker open-source innovation</a> from re:Invent 2019 which gives you a brief overview of <a href="https://firecracker-microvm.github.io/">Firecracker</a> which is the underlying technology of AWS Lambda.</p>
+<h2 id="use">Use</h2>
+<pre class="language-dart"><code>dependencies:
+  aws_lambda_dart_runtime:
+</code></pre>
+<p><a href="https://awslabs.github.io/aws-lambda-dart-runtime/">Docs</a> are available. They are also accessible in the <a href="https://github.com/awslabs/aws-lambda-dart-runtime/blob/docs"><code>docs</code></a> folder.</p>
+<pre class="language-bash"><code class="language-bash"># access the docs local
+pub global activate dhttpd
+dhttpd --path docs
+</code></pre>
+<blockquote>
+<p>you can generate the docs with <code>dartdoc --output docs</code></p>
+</blockquote>
+<h2 id="future--ideas">Future &amp; Ideas</h2>
+<ul>
+<li>Support <a href="https://serverless.com/framework/">Serverless framework</a></li>
+<li>Automate the build process</li>
+<li>Better tracing and logging</li>
+</ul>
+<h2 id="limitations">Limitations</h2>
+<ul>
+<li>No Just-in-time (JIT) support</li>
+<li>Requires Dart <code>&gt;= 2.6</code></li>
+<li>No cross-platform compile support (see <a href="https://github.com/dart-lang/sdk/issues/28617">#28617</a>).</li>
+</ul>
+<h2 id="events">Events</h2>
+<p>There are a number of events that come with the Dart Runtime.</p>
+<ul>
+<li>Application Load Balancer</li>
+<li>Alexa</li>
+<li>API Gateway</li>
+<li>AppSync</li>
+<li>Cloudwatch</li>
+<li>Cognito</li>
+<li>DynamoDB</li>
+<li>Kinesis</li>
+<li>S3</li>
+<li>SQS</li>
+</ul>
+<p>You can also register custom events.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart';
+
+class MyCustomEvent {
+  factory MyCustomEvent.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      MyCustomEvent(json);
+
+  const MyCustomEvent();
+}
+
+void main() async {
+  final Handler&lt;MyCustomEvent&gt; successHandler =
+      (context, event) async {
+    return InvocationResult(context.requestId, "SUCCESS");
+  };
+
+  Runtime()
+    ..registerEvent&lt;MyCustomEvent&gt;((Map&lt;String, dynamic&gt; json) =&gt; MyCustomEvent.from(json))
+    ..registerHandler&lt;MyCustomEvent&gt;("doesnt.matter", successHandler)
+    ..invoke();
+}
+</code></pre>
+<h2 id="example">Example</h2>
+<p>The example in <a href="https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/lib/main.dart"><code>main.dart</code></a> show how the package is intended to be used. Because <code>dart2native</code> does not support cross-platform compilation, you can use the <a href="https://hub.docker.com/r/google/dart/"><code>google/dart</code></a> (:warning: if you are on <code>Linux</code> you can ignore this) container to build the project. The <code>build.sh</code> script automates the build process in the container.</p>
+<pre class="language-dart"><code>  # will build the binary in the container
+  cd example; docker run -v $PWD:/app --entrypoint app/build.sh google/dart &amp;&amp; zip lambda.zip bootstrap &amp;&amp; rm bootstrap
+</code></pre>
+<p>You will see the <code>lambda.zip</code> which you can upload manually, or use the client of your choice.</p>
+<p>What you see in the example is an example of the interface to the Dart Runtime that we created.</p>
+<p>You will have to make <code>aws_lambda_dart_runtime</code> a dependency of your project.</p>
+<pre class="language-dart"><code>...
+dependencies:
+  aws_lambda_dart_runtime:
+...
+</code></pre>
+<p>We support to use multiple handlers in one executable. The following example shows to register one handler.</p>
+<pre class="language-dart"><code class="language-dart">import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart';
+
+void main() async {
+  /// This demo's handling an API Gateway request.
+  final Handler&lt;AwsApiGatewayEvent&gt; helloApiGateway = (context, event) async {
+    final response = {"message": "hello ${context.requestId}"};
+
+    /// it returns an encoded response to the gateway
+    return InvocationResult(
+        context.requestId, AwsApiGatewayResponse.fromJson(response));
+  };
+
+  /// The Runtime is a singleton. You can define the handlers as you wish.
+  Runtime()
+    ..registerHandler&lt;AwsApiGatewayEvent&gt;("hello.apigateway", helloApiGateway)
+    ..invoke();
+}
+</code></pre>
+<p>This example registers the <code>hello.apigateway</code> handler with the function to execute for this handler. The handler function is typed to receive a <a href="https://aws.amazon.com/api-gateway">Amazon API Gateway Event</a> and it returns a response to the invoking gateway. We support many other <a href="#events">events</a>. Handler functions get a <code>Context</code> injected with the needed information about the invocation. You can also register your own custom events via <code>Runtime.registerEvent&lt;T&gt;(Handler&lt;T&gt;)</code> (see <a href="#events">events</a>).</p>
+<h3 id="deployment">Deployment</h3>
+<p>The deployment is a manual task right now. We have a <a href="https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh"><code>example/build.sh</code></a> script which make the process a bit easier. There are three steps to get your code ready to be shipped.</p>
+<ol>
+<li>Compile your Dart program with <code>dart2native main.dart -o bootstrap</code></li>
+<li>Create a <code>.zip</code> file with <code>zip lambda.zip bootstrap</code></li>
+<li>Upload the <code>lambda.zip</code> to a S3 bucket or use the <a href="https://aws.amazon.com/cli">AWS CLI</a> to upload it</li>
+</ol>
+<blockquote>
+<p>again, you have to build this on Linux, because <code>dart2native</code> does not support cross-compiling</p>
+</blockquote>
+<p>When you created your function and upload it via the the console. Please, replace <code>arn:aws:iam::xxx:xxx</code> with the role you created for your lambda.</p>
+<pre class="language-bash"><code class="language-bash">aws lambda create-function --function-name dartTest \
+  --handler hello.apigateway \
+  --zip-file fileb://./lambda.zip \
+  --runtime provided \
+  --role arn:aws:iam::xxx:xxx \
+  --environment Variables={DART_BACKTRACE=1} \
+  --tracing-config Mode=Active
+</code></pre>
+<p>Updating a function is a fairly easy task. Rebuild your <code>lambda.zip</code> package and execute the following command.</p>
+<pre class="language-dart"><code>aws lambda update-function-code --function-name dartTest --zip-file fileb://./lambda.zip
+
+</code></pre>
+<h2 id="development">Development</h2>
+<p>If you want to use the <a href="https://github.com/awslabs/aws-lambda-dart-runtime.git">Repository</a> directly you can clone it and overwrite the dependency in your <code>pubspec.yaml</code> as follows.</p>
+<pre class="language-yaml"><code class="language-yaml">dependency_overrides:
+  aws_lambda_dart_runtime:
+    path: &lt;path_to_source&gt;
+</code></pre>
+<p>The <a href="https://github.com/aws-lambda-dart-runtime/data"><code>data</code></a> folder contains examples of the used events. We use this to run our tests, but you can also use them to implement new features. If you want to request the processing of a new event, you may provide a payload here.</p>
+<pre class="language-bash"><code class="language-bash"># run the tests
+pub run test
+</code></pre>
+<h2 id="license">License</h2>
+<p><a href="/LICENSE">Apache 2.0</a></p>
+<p>We :blue_heart: Dart.</p>
+      </section>
+      
+        <section class="summary">
+            <h2>Libraries</h2>
+          <dl>
+            <dt id="alb_event">
+              <span class="name"><a href="events_alb_event/events_alb_event-library.html">alb_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="alexa_event">
+              <span class="name"><a href="events_alexa_event/events_alexa_event-library.html">alexa_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="apigateway_event">
+              <span class="name"><a href="events_apigateway_event/events_apigateway_event-library.html">apigateway_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="appsync_event">
+              <span class="name"><a href="events_appsync_event/events_appsync_event-library.html">appsync_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="aws_lambda_dart_runtime">
+              <span class="name"><a href="aws_lambda_dart_runtime/aws_lambda_dart_runtime-library.html">aws_lambda_dart_runtime</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="client">
+              <span class="name"><a href="client_client/client_client-library.html">client</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="cloudwatch_event">
+              <span class="name"><a href="events_cloudwatch_event/events_cloudwatch_event-library.html">cloudwatch_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="cloudwatch_log_event">
+              <span class="name"><a href="events_cloudwatch_log_event/events_cloudwatch_log_event-library.html">cloudwatch_log_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="cognito_event">
+              <span class="name"><a href="events_cognito_event/events_cognito_event-library.html">cognito_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="context">
+              <span class="name"><a href="runtime_context/runtime_context-library.html">context</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="dynamodb_event">
+              <span class="name"><a href="events_dynamodb_event/events_dynamodb_event-library.html">dynamodb_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="event">
+              <span class="name"><a href="runtime_event/runtime_event-library.html">event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="kinesis_data_firehose_event">
+              <span class="name"><a href="events_kinesis_data_firehose_event/events_kinesis_data_firehose_event-library.html">kinesis_data_firehose_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="kinesis_data_stream_event">
+              <span class="name"><a href="events_kinesis_data_stream_event/events_kinesis_data_stream_event-library.html">kinesis_data_stream_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="runtime">
+              <span class="name"><a href="runtime_runtime/runtime_runtime-library.html">runtime</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="s3_event">
+              <span class="name"><a href="events_s3_event/events_s3_event-library.html">s3_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>            <dt id="sqs_event">
+              <span class="name"><a href="events_sqs_event/events_sqs_event-library.html">sqs_event</a></span>             
+            </dt>
+            <dd>
+              
+            </dd>          </dl>
+        </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    aws_lambda_dart_runtime
+      1.0.0-beta.1
+  </span>
+
+  <!-- footer-text placeholder -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- footer placeholder -->
+
+</body>
+
+</html>
