@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the AwsApiGatewayResponse class from the apigateway_event library, for the Dart programming language.">
+  <title>AwsApiGatewayResponse class - apigateway_event library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  <!-- header placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">aws_lambda_dart_runtime</a></li>
+    <li><a href="events_apigateway_event/events_apigateway_event-library.html">apigateway_event</a></li>
+    <li class="self-crumb">AwsApiGatewayResponse class</li>
+  </ol>
+  <div class="self-name">AwsApiGatewayResponse</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">aws_lambda_dart_runtime</a></li>
+      <li><a href="events_apigateway_event/events_apigateway_event-library.html">apigateway_event</a></li>
+      <li class="self-crumb">AwsApiGatewayResponse class</li>
+    </ol>
+    
+    <h5>apigateway_event library</h5>
+    <ol>
+      <li class="section-title"><a href="events_apigateway_event/events_apigateway_event-library.html#classes">Classes</a></li>
+      <li><a href="events_apigateway_event/AwsApiGatewayEvent-class.html">AwsApiGatewayEvent</a></li>
+      <li><a href="events_apigateway_event/AwsApiGatewayEventHeaders-class.html">AwsApiGatewayEventHeaders</a></li>
+      <li><a href="events_apigateway_event/AwsApiGatewayEventRequestContext-class.html">AwsApiGatewayEventRequestContext</a></li>
+      <li><a href="events_apigateway_event/AwsApiGatewayEventRequestContextIdentity-class.html">AwsApiGatewayEventRequestContextIdentity</a></li>
+      <li><a href="events_apigateway_event/AwsApiGatewayResponse-class.html">AwsApiGatewayResponse</a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    </ol>
+  </div>
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-class">AwsApiGatewayResponse</span> class </h1></div>
+
+    <section class="desc markdown">
+      <p>API Gateway Response contains the data for a response
+to the API Gateway. It contains the <a href="events_apigateway_event/AwsApiGatewayResponse/body.html">body</a> of the HTTP response.
+It also contains a HTTP Status Code which by default is <code>200</code>.
+Furthermore it indicates if the <a href="events_apigateway_event/AwsApiGatewayResponse/body.html">body</a> is Base64 encoded or not.</p>
+    </section>
+    
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="AwsApiGatewayResponse" class="callable">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/AwsApiGatewayResponse.html">AwsApiGatewayResponse</a></span><span class="signature">({<span class="parameter" id="-param-body"><span class="type-annotation">dynamic</span> <span class="parameter-name">body</span></span> <span class="parameter" id="-param-isBase64Encoded"><span class="type-annotation">dynamic</span> <span class="parameter-name">isBase64Encoded</span></span> <span class="parameter" id="-param-statusCode"><span class="type-annotation">dynamic</span> <span class="parameter-name">statusCode</span></span> })</span>
+        </dt>
+        <dd>
+          The Response that should be returned by the API Gateway for the
+Lambda invocation. It has a <code>body</code> which reflects the body of the HTTP Response.
+But also it signals if the <code>body</code> is Base64 encoded and what the HTTP Status Code
+of the response is.
+        </dd>
+        <dt id="AwsApiGatewayResponse.fromJson" class="callable">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/AwsApiGatewayResponse.fromJson.html">AwsApiGatewayResponse.fromJson</a></span><span class="signature">(<span class="parameter" id="fromJson-param-body"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">body</span>, {</span> <span class="parameter" id="fromJson-param-isBase64Encoded"><span class="type-annotation">bool</span> <span class="parameter-name">isBase64Encoded</span>, </span> <span class="parameter" id="fromJson-param-statusCode"><span class="type-annotation">int</span> <span class="parameter-name">statusCode</span></span> })</span>
+        </dt>
+        <dd>
+          The factory creates a new <a href="events_apigateway_event/AwsApiGatewayResponse-class.html">AwsApiGatewayResponse</a> from JSON.
+It optionally accepts the Base64 encoded flag and a HTTP Status Code
+for the response.
+          <div class="constructor-modifier features">factory</div>
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="body" class="property">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/body.html">body</a></span>
+          <span class="signature">&#8596; String</span>         
+        </dt>
+        <dd>
+          The body of the HTTP Response send from the API Gateway to the client.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="isBase64Encoded" class="property">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/isBase64Encoded.html">isBase64Encoded</a></span>
+          <span class="signature">&#8596; bool</span>         
+        </dt>
+        <dd>
+          Indicates if the <a href="events_apigateway_event/AwsApiGatewayResponse/body.html">body</a> is Base64 encoded or not. By default is <code>false</code>.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="statusCode" class="property">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/statusCode.html">statusCode</a></span>
+          <span class="signature">&#8596; int</span>         
+        </dt>
+        <dd>
+          
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="hashCode" class="property inherited">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/hashCode.html">hashCode</a></span>
+          <span class="signature">&#8594; int</span>         
+        </dt>
+        <dd class="inherited">
+          The hash code for this object. <a href="events_apigateway_event/AwsApiGatewayResponse/hashCode.html">[...]</a>
+                  <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="runtimeType" class="property inherited">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/runtimeType.html">runtimeType</a></span>
+          <span class="signature">&#8594; Type</span>         
+        </dt>
+        <dd class="inherited">
+          A representation of the runtime type of the object.
+                  <div class="features">read-only, inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="toJson" class="callable">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/toJson.html">toJson</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span></span>
+          </span>
+                  </dt>
+        <dd>
+          Returns the JSON representation of the response. This is called by
+the JSON encoder to produce the response.
+                  
+</dd>
+        <dt id="noSuchMethod" class="callable inherited">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Invoked when a non-existent method or property is accessed. <a href="events_apigateway_event/AwsApiGatewayResponse/noSuchMethod.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+        <dt id="toString" class="callable inherited">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/toString.html">toString</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          Returns a string representation of this object.
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+            <span class="returntype parameter">&#8594; bool</span>
+          </span>
+                  </dt>
+        <dd class="inherited">
+          The equality operator. <a href="events_apigateway_event/AwsApiGatewayResponse/operator_equals.html">[...]</a>
+                  <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+    
+      <li class="section-title"><a href="events_apigateway_event/AwsApiGatewayResponse-class.html#constructors">Constructors</a></li>
+      <li><a href="events_apigateway_event/AwsApiGatewayResponse/AwsApiGatewayResponse.html">AwsApiGatewayResponse</a></li>
+      <li><a href="events_apigateway_event/AwsApiGatewayResponse/AwsApiGatewayResponse.fromJson.html">fromJson</a></li>
+    
+      <li class="section-title">
+        <a href="events_apigateway_event/AwsApiGatewayResponse-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="events_apigateway_event/AwsApiGatewayResponse/body.html">body</a></li>
+      <li><a href="events_apigateway_event/AwsApiGatewayResponse/isBase64Encoded.html">isBase64Encoded</a></li>
+      <li><a href="events_apigateway_event/AwsApiGatewayResponse/statusCode.html">statusCode</a></li>
+      <li class="inherited"><a href="events_apigateway_event/AwsApiGatewayResponse/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="events_apigateway_event/AwsApiGatewayResponse/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="events_apigateway_event/AwsApiGatewayResponse-class.html#instance-methods">Methods</a></li>
+      <li><a href="events_apigateway_event/AwsApiGatewayResponse/toJson.html">toJson</a></li>
+      <li class="inherited"><a href="events_apigateway_event/AwsApiGatewayResponse/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="events_apigateway_event/AwsApiGatewayResponse/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="events_apigateway_event/AwsApiGatewayResponse-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="events_apigateway_event/AwsApiGatewayResponse/operator_equals.html">operator ==</a></li>
+    
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    aws_lambda_dart_runtime
+      1.0.0-beta.1
+  </span>
+
+  <!-- footer-text placeholder -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- footer placeholder -->
+
+</body>
+
+</html>

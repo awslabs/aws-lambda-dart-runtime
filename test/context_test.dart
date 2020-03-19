@@ -3,8 +3,8 @@ import "dart:convert";
 import "package:test/test.dart";
 
 import 'package:aws_lambda_dart_runtime/runtime/context.dart';
-import "package:aws_lambda_dart_runtime/client/client.dart";
-import 'package:aws_lambda_dart_runtime/testing/testing.dart';
+import 'package:aws_lambda_dart_runtime/client/client.dart';
+import 'common.dart';
 
 void main() {
   group('context', () {

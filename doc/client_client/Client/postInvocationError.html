@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the postInvocationError method from the Client class, for the Dart programming language.">
+  <title>postInvocationError method - Client class - client library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  <!-- header placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">aws_lambda_dart_runtime</a></li>
+    <li><a href="client_client/client_client-library.html">client</a></li>
+    <li><a href="client_client/Client-class.html">Client</a></li>
+    <li class="self-crumb">postInvocationError method</li>
+  </ol>
+  <div class="self-name">postInvocationError</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">aws_lambda_dart_runtime</a></li>
+      <li><a href="client_client/client_client-library.html">client</a></li>
+      <li><a href="client_client/Client-class.html">Client</a></li>
+      <li class="self-crumb">postInvocationError method</li>
+    </ol>
+    
+    <h5>Client class</h5>
+    <ol>
+    
+        <li class="section-title"><a href="client_client/Client-class.html#constructors">Constructors</a></li>
+        <li><a href="client_client/Client/Client.html">Client</a></li>
+    
+        <li class="section-title inherited">
+            <a href="client_client/Client-class.html#instance-properties">Properties</a>
+        </li>
+        <li class="inherited"><a href="client_client/Client/hashCode.html">hashCode</a></li>
+        <li class="inherited"><a href="client_client/Client/runtimeType.html">runtimeType</a></li>
+    
+        <li class="section-title"><a href="client_client/Client-class.html#instance-methods">Methods</a></li>
+        <li><a href="client_client/Client/getNextInvocation.html">getNextInvocation</a></li>
+        <li><a href="client_client/Client/postInvocationError.html">postInvocationError</a></li>
+        <li><a href="client_client/Client/postInvocationResponse.html">postInvocationResponse</a></li>
+        <li class="inherited"><a href="client_client/Client/noSuchMethod.html">noSuchMethod</a></li>
+        <li class="inherited"><a href="client_client/Client/toString.html">toString</a></li>
+    
+        <li class="section-title inherited"><a href="client_client/Client-class.html#operators">Operators</a></li>
+        <li class="inherited"><a href="client_client/Client/operator_equals.html">operator ==</a></li>
+    
+        <li class="section-title"><a href="client_client/Client-class.html#static-properties">Static properties</a></li>
+        <li><a href="client_client/Client/runtimeApi.html">runtimeApi</a></li>
+    
+    
+        <li class="section-title"><a href="client_client/Client-class.html#constants">Constants</a></li>
+        <li><a href="client_client/Client/runtimeApiVersion-constant.html">runtimeApiVersion</a></li>
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-method">postInvocationError</span> method</h1></div>
+
+    <section class="multi-line-signature">
+      <span class="returntype">Future<span class="signature">&lt;<wbr><span class="type-parameter">HttpClientResponse</span>&gt;</span></span>
+            <span class="name ">postInvocationError</span>
+(<wbr><span class="parameter" id="postInvocationError-param-requestId"><span class="type-annotation">String</span> <span class="parameter-name">requestId</span>, </span> <span class="parameter" id="postInvocationError-param-err"><span class="type-annotation"><a href="client_client/InvocationError-class.html">InvocationError</a></span> <span class="parameter-name">err</span></span>)
+      
+    </section>
+    <section class="desc markdown">
+      <p>Post an invocation error to the AWS Lambda Runtime Interface.
+It takes in an <a href="client_client/InvocationError-class.html">InvocationError</a> and the <code>requestId</code>. The <code>requestId</code>
+is used to map the error to the execution.</p>
+    </section>
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">Future&lt;HttpClientResponse&gt; postInvocationError(
+    String requestId, InvocationError err) async {
+  final request = await _client.postUrl(
+    Uri.parse(
+      &#39;http:&#47;&#47;${runtimeApi}&#47;${runtimeApiVersion}&#47;runtime&#47;invocation&#47;$requestId&#47;error&#39;,
+    ),
+  );
+  request.add(utf8.encode(err.error.toJson()));
+
+  return await request.close();
+}</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    aws_lambda_dart_runtime
+      1.0.0-beta.1
+  </span>
+
+  <!-- footer-text placeholder -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- footer placeholder -->
+
+</body>
+
+</html>

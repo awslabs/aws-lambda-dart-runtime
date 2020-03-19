@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the AwsS3EventRecord constructor from the Class AwsS3EventRecord class from the s3_event library, for the Dart programming language.">
+  <title>AwsS3EventRecord constructor - AwsS3EventRecord class - s3_event library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="../..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+  <!-- header placeholder -->
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">aws_lambda_dart_runtime</a></li>
+    <li><a href="events_s3_event/events_s3_event-library.html">s3_event</a></li>
+    <li><a href="events_s3_event/AwsS3EventRecord-class.html">AwsS3EventRecord</a></li>
+    <li class="self-crumb">AwsS3EventRecord const constructor</li>
+  </ol>
+  <div class="self-name">AwsS3EventRecord</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div id="dartdoc-sidebar-left" class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="index.html">aws_lambda_dart_runtime</a></li>
+      <li><a href="events_s3_event/events_s3_event-library.html">s3_event</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord-class.html">AwsS3EventRecord</a></li>
+      <li class="self-crumb">AwsS3EventRecord const constructor</li>
+    </ol>
+    
+    <h5>AwsS3EventRecord class</h5>
+    <ol>
+    
+      <li class="section-title"><a href="events_s3_event/AwsS3EventRecord-class.html#constructors">Constructors</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord/AwsS3EventRecord.html">AwsS3EventRecord</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord/AwsS3EventRecord.fromJson.html">fromJson</a></li>
+    
+      <li class="section-title">
+        <a href="events_s3_event/AwsS3EventRecord-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="events_s3_event/AwsS3EventRecord/awsRegion.html">awsRegion</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord/eventName.html">eventName</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord/eventSource.html">eventSource</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord/eventTime.html">eventTime</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord/eventVersion.html">eventVersion</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord/requestParameters.html">requestParameters</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord/responseElements.html">responseElements</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord/s3.html">s3</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord/userIdentity.html">userIdentity</a></li>
+      <li class="inherited"><a href="events_s3_event/AwsS3EventRecord/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="events_s3_event/AwsS3EventRecord/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="events_s3_event/AwsS3EventRecord-class.html#instance-methods">Methods</a></li>
+      <li><a href="events_s3_event/AwsS3EventRecord/toJson.html">toJson</a></li>
+      <li class="inherited"><a href="events_s3_event/AwsS3EventRecord/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="events_s3_event/AwsS3EventRecord/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="events_s3_event/AwsS3EventRecord-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="events_s3_event/AwsS3EventRecord/operator_equals.html">operator ==</a></li>
+    
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-left-->
+
+  <div id="dartdoc-main-content" class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <div><h1><span class="kind-constructor">AwsS3EventRecord</span> constructor</h1></div>
+
+    <section class="multi-line-signature">
+      const
+      <span class="name ">AwsS3EventRecord</span>(<wbr>{<span class="parameter" id="-param-eventName"><span class="type-annotation">String</span> <span class="parameter-name">eventName</span>, </span> <span class="parameter" id="-param-eventSource"><span class="type-annotation">String</span> <span class="parameter-name">eventSource</span>, </span> <span class="parameter" id="-param-awsRegion"><span class="type-annotation">String</span> <span class="parameter-name">awsRegion</span>, </span> <span class="parameter" id="-param-eventTime"><span class="type-annotation">DateTime</span> <span class="parameter-name">eventTime</span>, </span> <span class="parameter" id="-param-eventVersion"><span class="type-annotation">String</span> <span class="parameter-name">eventVersion</span>, </span> <span class="parameter" id="-param-userIdentity"><span class="type-annotation"><a href="events_s3_event/AwsS3UserIdentity-class.html">AwsS3UserIdentity</a></span> <span class="parameter-name">userIdentity</span>, </span> <span class="parameter" id="-param-requestParameters"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">requestParameters</span>, </span> <span class="parameter" id="-param-responseElements"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">responseElements</span>, </span> <span class="parameter" id="-param-s3"><span class="type-annotation"><a href="events_s3_event/AwsS3Data-class.html">AwsS3Data</a></span> <span class="parameter-name">s3</span></span> })
+    </section>
+
+    
+    <section class="summary source-code" id="source">
+      <h2><span>Implementation</span></h2>
+      <pre class="language-dart"><code class="language-dart">const AwsS3EventRecord(
+    {this.eventName,
+    this.eventSource,
+    this.awsRegion,
+    this.eventTime,
+    this.eventVersion,
+    this.userIdentity,
+    this.requestParameters,
+    this.responseElements,
+    this.s3});</code></pre>
+    </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    aws_lambda_dart_runtime
+      1.0.0-beta.1
+  </span>
+
+  <!-- footer-text placeholder -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+<!-- footer placeholder -->
+
+</body>
+
+</html>
