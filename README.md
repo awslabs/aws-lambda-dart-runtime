@@ -32,12 +32,9 @@ We want to highlight [Firecracker open-source innovation](https://www.youtube.co
 
 ## Use
 
-:warning: We are currently working on becoming a publisher on [pub.dev](https://pub.dev).
-
 ```
 dependencies:
   aws_lambda_dart_runtime:
-    git: https://github.com/awslabs/aws-lambda-dart-runtime.git
 ```
 
 [Docs](https://awslabs.github.io/aws-lambda-dart-runtime/) are available. They are also accessible in the [`docs`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/docs) folder.

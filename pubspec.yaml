@@ -1,8 +1,9 @@
 name: aws_lambda_dart_runtime
-version: 1.0.0-beta.0
+version: 1.0.0-beta.1
 author: Sebastian Doell<doels@amazon.com>
 description: A Lambda Runtime Interface for Dart.
 homepage: https://github.com/awslabs/aws-lambda-dart-runtime
+documentation: https://awslabs.github.io/aws-lambda-dart-runtime/
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
