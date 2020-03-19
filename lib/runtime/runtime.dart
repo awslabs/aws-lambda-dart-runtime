@@ -39,7 +39,7 @@ class _RuntimeHandler {
 class Runtime<T> {
   Client _client;
 
-  static final Runtime _singleton = new Runtime._internal();
+  static final Runtime _singleton = Runtime._internal();
   final Map<String, _RuntimeHandler> _handlers = {};
 
   factory Runtime() {
@@ -47,7 +47,7 @@ class Runtime<T> {
   }
 
   Runtime._internal() {
-    _client = new Client();
+    _client = Client();
   }
 
   /// Lists the registered handlers by name.

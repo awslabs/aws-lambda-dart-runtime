@@ -1,6 +1,7 @@
 name: aws_lambda_dart_runtime
-version: 1.0.0-beta.2
-description: A Lambda Runtime Interface for Dart.
+version: 1.0.0
+description: |-
+  A powerful runtime to build Lambda functions in Dart with native AWS events.
 homepage: https://github.com/awslabs/aws-lambda-dart-runtime
 documentation: https://awslabs.github.io/aws-lambda-dart-runtime/
 

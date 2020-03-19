@@ -105,14 +105,14 @@ class InvocationError {
 class Client {
   HttpClient _client;
 
-  static final Client _singleton = new Client._internal();
+  static final Client _singleton = Client._internal();
 
   factory Client() {
     return _singleton;
   }
 
   Client._internal() {
-    _client = new HttpClient();
+    _client = HttpClient();
   }
 
   static const runtimeApiVersion = '2018-06-01';
