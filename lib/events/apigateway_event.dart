@@ -15,8 +15,12 @@ class AwsApiGatewayResponse {
 
   /// Indicates if the [body] is Base64 encoded or not. By default is `false`.
   bool isBase64Encoded;
+
   // HTTP Status Code of the response of the API Gateway to the client.
   int statusCode;
+
+  /// The HTTP headers that should be send with the response to the client.
+  Map<String, String> headers;
 
   /// Returns the JSON representation of the response. This is called by
   /// the JSON encoder to produce the response.
@@ -24,16 +28,18 @@ class AwsApiGatewayResponse {
         'body': body,
         'isBase64Encoded': isBase64Encoded,
         'statusCode': statusCode,
+        'headers': headers
       };
 
   /// The factory creates a new [AwsApiGatewayResponse] from JSON.
   /// It optionally accepts the Base64 encoded flag and a HTTP Status Code
   /// for the response.
   factory AwsApiGatewayResponse.fromJson(Map<String, dynamic> body,
-      {bool isBase64Encoded, int statusCode}) {
+      {bool isBase64Encoded, int statusCode, Map<String, String> headers}) {
     return AwsApiGatewayResponse(
         body: json.encode(body),
         isBase64Encoded: isBase64Encoded,
+        headers: headers,
         statusCode: statusCode);
   }
 
@@ -44,10 +50,12 @@ class AwsApiGatewayResponse {
   AwsApiGatewayResponse({
     body,
     isBase64Encoded,
+    headers,
     statusCode,
   }) {
     this.body = body ?? '';
     this.isBase64Encoded = isBase64Encoded ?? false;
+    this.headers = headers ?? {"Content-Type": "application/json"};
     this.statusCode = statusCode ?? HttpStatus.ok;
   }
 }

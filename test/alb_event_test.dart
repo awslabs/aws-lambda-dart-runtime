@@ -22,6 +22,20 @@ void main() {
       expect(response.isBase64Encoded, equals(false));
     });
 
+    test("factory creates an event with html/text Header", () {
+      final response = AwsALBResponse.fromString("");
+
+      expect(response.headers,
+          equals({"Content-Type": "text/html; charset=utf-8"}));
+    });
+
+    test("factory creates an event with JSON Header", () {
+      final response = AwsALBResponse.fromString("",
+          headers: {"Content-Type": "application/json"});
+
+      expect(response.headers, equals({"Content-Type": "application/json"}));
+    });
+
     test("factory creates response which is base64 encoded", () {
       final response =
           AwsALBResponse.fromString("SUCCESS", isBase64Encoded: true);
