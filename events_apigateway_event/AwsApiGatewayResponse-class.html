@@ -84,7 +84,7 @@ Furthermore it indicates if the <a href="events_apigateway_event/AwsApiGatewayRe
 
       <dl class="constructor-summary-list">
         <dt id="AwsApiGatewayResponse" class="callable">
-          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/AwsApiGatewayResponse.html">AwsApiGatewayResponse</a></span><span class="signature">({<span class="parameter" id="-param-body"><span class="type-annotation">dynamic</span> <span class="parameter-name">body</span></span> <span class="parameter" id="-param-isBase64Encoded"><span class="type-annotation">dynamic</span> <span class="parameter-name">isBase64Encoded</span></span> <span class="parameter" id="-param-statusCode"><span class="type-annotation">dynamic</span> <span class="parameter-name">statusCode</span></span> })</span>
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/AwsApiGatewayResponse.html">AwsApiGatewayResponse</a></span><span class="signature">({<span class="parameter" id="-param-body"><span class="type-annotation">dynamic</span> <span class="parameter-name">body</span></span> <span class="parameter" id="-param-isBase64Encoded"><span class="type-annotation">dynamic</span> <span class="parameter-name">isBase64Encoded</span></span> <span class="parameter" id="-param-headers"><span class="type-annotation">dynamic</span> <span class="parameter-name">headers</span></span> <span class="parameter" id="-param-statusCode"><span class="type-annotation">dynamic</span> <span class="parameter-name">statusCode</span></span> })</span>
         </dt>
         <dd>
           The Response that should be returned by the API Gateway for the
@@ -93,7 +93,7 @@ But also it signals if the <code>body</code> is Base64 encoded and what the HTTP
 of the response is.
         </dd>
         <dt id="AwsApiGatewayResponse.fromJson" class="callable">
-          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/AwsApiGatewayResponse.fromJson.html">AwsApiGatewayResponse.fromJson</a></span><span class="signature">(<span class="parameter" id="fromJson-param-body"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">body</span>, {</span> <span class="parameter" id="fromJson-param-isBase64Encoded"><span class="type-annotation">bool</span> <span class="parameter-name">isBase64Encoded</span>, </span> <span class="parameter" id="fromJson-param-statusCode"><span class="type-annotation">int</span> <span class="parameter-name">statusCode</span></span> })</span>
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/AwsApiGatewayResponse.fromJson.html">AwsApiGatewayResponse.fromJson</a></span><span class="signature">(<span class="parameter" id="fromJson-param-body"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">body</span>, {</span> <span class="parameter" id="fromJson-param-isBase64Encoded"><span class="type-annotation">bool</span> <span class="parameter-name">isBase64Encoded</span>, </span> <span class="parameter" id="fromJson-param-statusCode"><span class="type-annotation">int</span> <span class="parameter-name">statusCode</span>, </span> <span class="parameter" id="fromJson-param-headers"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">headers</span></span> })</span>
         </dt>
         <dd>
           The factory creates a new <a href="events_apigateway_event/AwsApiGatewayResponse-class.html">AwsApiGatewayResponse</a> from JSON.
@@ -114,6 +114,14 @@ for the response.
         </dt>
         <dd>
           The body of the HTTP Response send from the API Gateway to the client.
+                  <div class="features">read / write</div>
+</dd>
+        <dt id="headers" class="property">
+          <span class="name"><a href="events_apigateway_event/AwsApiGatewayResponse/headers.html">headers</a></span>
+          <span class="signature">&#8596; Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span>         
+        </dt>
+        <dd>
+          The HTTP headers that should be send with the response to the client.
                   <div class="features">read / write</div>
 </dd>
         <dt id="isBase64Encoded" class="property">
@@ -216,6 +224,7 @@ the JSON encoder to produce the response.
         <a href="events_apigateway_event/AwsApiGatewayResponse-class.html#instance-properties">Properties</a>
       </li>
       <li><a href="events_apigateway_event/AwsApiGatewayResponse/body.html">body</a></li>
+      <li><a href="events_apigateway_event/AwsApiGatewayResponse/headers.html">headers</a></li>
       <li><a href="events_apigateway_event/AwsApiGatewayResponse/isBase64Encoded.html">isBase64Encoded</a></li>
       <li><a href="events_apigateway_event/AwsApiGatewayResponse/statusCode.html">statusCode</a></li>
       <li class="inherited"><a href="events_apigateway_event/AwsApiGatewayResponse/hashCode.html">hashCode</a></li>
