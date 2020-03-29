@@ -75,6 +75,10 @@ class AwsApiGatewayEvent {
   @JsonKey()
   final String httpMethod;
 
+  /// Body ...
+  @JsonKey()
+  final String body;
+
   /// Headers ...
   @JsonKey()
   final AwsApiGatewayEventHeaders headers;
@@ -103,6 +107,7 @@ class AwsApiGatewayEvent {
       {this.resource,
       this.path,
       this.httpMethod,
+      this.body,
       this.headers,
       this.queryStringParameters,
       this.stageVariables,

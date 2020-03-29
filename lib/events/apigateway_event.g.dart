@@ -11,6 +11,7 @@ AwsApiGatewayEvent _$AwsApiGatewayEventFromJson(Map<String, dynamic> json) {
     resource: json['resource'] as String,
     path: json['path'] as String,
     httpMethod: json['httpMethod'] as String,
+    body: json['body'] as String,
     headers: json['headers'] == null
         ? null
         : AwsApiGatewayEventHeaders.fromJson(
@@ -31,6 +32,7 @@ Map<String, dynamic> _$AwsApiGatewayEventToJson(AwsApiGatewayEvent instance) =>
       'path': instance.path,
       'resource': instance.resource,
       'httpMethod': instance.httpMethod,
+      'body': instance.body,
       'headers': instance.headers,
       'pathParameters': instance.pathParameters,
       'queryStringParameters': instance.queryStringParameters,

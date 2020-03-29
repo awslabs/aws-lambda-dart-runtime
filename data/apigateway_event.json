@@ -41,9 +41,10 @@
             "user": ""
         },
         "resourcePath": "/{proxy+}",
-        "httpMethod": "GET",
+        "httpMethod": "POST",
         "apiId": "wt6mne2s9k"
     },
+    "body": "{\"foo\":\"bar\"}",
     "resource": "/{proxy+}",
     "httpMethod": "GET",
     "queryStringParameters": {
