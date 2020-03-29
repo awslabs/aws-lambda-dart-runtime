@@ -1,3 +1,7 @@
+## 1.0.2
+
+- #6 Adding body to API Gateway request
+
 ## 1.0.1
 
 - #5 Adding headers to API Gateway response
