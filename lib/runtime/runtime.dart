@@ -3,6 +3,7 @@ import 'dart:async';
 import '../client/client.dart';
 import 'event.dart';
 import 'context.dart';
+import 'exception.dart';
 
 /// A function which ingests and Event and a [Context]
 /// and returns a [InvocationResult]. The result is ecoded
@@ -104,7 +105,7 @@ class Runtime<T> {
 
         final func = _handlers[context.handler];
         if(func == null) {
-          throw Exception('No handler with name "${context.handler}" registered in runtime!');
+          throw RuntimeException('No handler with name "${context.handler}" registered in runtime!');
         }
         final event =
             Event.fromHandler(func.type, await nextInvocation.response);
