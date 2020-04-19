@@ -97,9 +97,9 @@ representation for the Runtime Interface.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">Map&lt;String, dynamic&gt; toJson() =&gt; {
-      &#39;errorMessage&#39;: error,
+      &#39;errorMessage&#39;: error.toString(),
       &#39;errorType&#39;: &quot;InvocationError&quot;,
-      &#39;stackTrace&#39;: this.stackTrace
+      &#39;stackTrace&#39;: this.stackTrace.toString()
     };</code></pre>
     </section>
 

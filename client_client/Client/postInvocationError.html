@@ -108,7 +108,11 @@ is used to map the error to the execution.</p>
       &#39;http:&#47;&#47;${runtimeApi}&#47;${runtimeApiVersion}&#47;runtime&#47;invocation&#47;$requestId&#47;error&#39;,
     ),
   );
-  request.add(utf8.encode(err.error.toJson()));
+  request.add(
+      utf8.encode(
+          json.encode(err)
+      )
+  );
 
   return await request.close();
 }</code></pre>
