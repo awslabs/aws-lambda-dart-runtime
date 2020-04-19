@@ -91,9 +91,9 @@ class InvocationError {
   /// Extracts the [InvocationError] data into a JSON
   /// representation for the Runtime Interface.
   Map<String, dynamic> toJson() => {
-        'errorMessage': error,
+        'errorMessage': error.toString(),
         'errorType': "InvocationError",
-        'stackTrace': this.stackTrace
+        'stackTrace': this.stackTrace.toString()
       };
 
   const InvocationError(this.error, this.stackTrace);
@@ -153,7 +153,11 @@ class Client {
         'http://${runtimeApi}/${runtimeApiVersion}/runtime/invocation/$requestId/error',
       ),
     );
-    request.add(utf8.encode(err.error.toJson()));
+    request.add(
+        utf8.encode(
+            json.encode(err)
+        )
+    );
 
     return await request.close();
   }
