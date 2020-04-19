@@ -103,6 +103,9 @@ class Runtime<T> {
         final context = Context.fromNextInvocation(nextInvocation);
 
         final func = _handlers[context.handler];
+        if(func == null) {
+          throw Exception('No handler with name "${context.handler}" registered in runtime!');
+        }
         final event =
             Event.fromHandler(func.type, await nextInvocation.response);
         final result = await func.handler(context, event);
