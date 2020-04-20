@@ -1,3 +1,8 @@
+## 1.0.3
+
+- #10 Throw exception on missing handler
+- #9 Better error messages
+
 ## 1.0.2
 
 - #6 Adding body to API Gateway request
