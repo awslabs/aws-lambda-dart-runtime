@@ -117,6 +117,9 @@ and the error is posted via <code>_client.postInvocationError(err)</code> to the
       final context = Context.fromNextInvocation(nextInvocation);
 
       final func = _handlers[context.handler];
+      if(func == null) {
+        throw RuntimeException(&#39;No handler with name &quot;${context.handler}&quot; registered in runtime!&#39;);
+      }
       final event =
           Event.fromHandler(func.type, await nextInvocation.response);
       final result = await func.handler(context, event);
