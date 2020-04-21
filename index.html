@@ -81,7 +81,7 @@
 <ul>
 <li>Great performance <code>&lt; 10ms</code> on event processing and <code>&lt; 50MB</code> memory consumption</li>
 <li>No need to ship the Dart runtime</li>
-<li>Multople event handlers</li>
+<li>Multiple event handlers</li>
 <li>Typed events</li>
 <li>Custom events</li>
 </ul>
@@ -90,7 +90,7 @@
 currently <code>dart2native</code> only supports building for the platform it is run on, so you must either build on a <code>Linux</code> machine or use <code>docker</code></p>
 </blockquote>
 <h2 id="introduction">Introduction</h2>
-<p><a href="https://dart.dev/">Dart</a> is a unsupported <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> runtime language. However, with a <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html">custom runtime</a> you can support virtually ever programming language.</p>
+<p><a href="https://dart.dev/">Dart</a> is a unsupported <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> runtime language. However, with a <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html">custom runtime</a> you can support virtually every programming language.</p>
 <p>There are two ways in which you could use <a href="https://dart.dev/">Dart</a>. You could bundle the Dart Runtime in a <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layer</a> and use JIT compilation within the lambda execution to run a Dart program. The other is to compile a shipable binary of the Dart program.</p>
 <p>Dart <code>&gt;= 2.6</code> introduced <code>dart2native</code>. The <a href="https://dart.dev/tools/dart2native">tool</a> uses AOT (ahead-of-time) to compile a Dart program to <a href="https://dart.dev/platforms">native x64 machine code</a>. This standalone executable is native machine code that's compiled from the specific Dart file and its dependencies, plus a small Dart runtime that handles type checking and garbage collection.</p>
 <p>We decided to use the later approach rather then the just-in-time compilation of Dart files. The main reason for this decision is that we wanted to avoid having to ship and maintain a standalone Dart runtime version. We would eventually have to deprecate versions, or always update the version when moving forward. Furthermore, shipping a binary has the advantage of having an always runnable version of your function in addition to performance benefits.</p>
