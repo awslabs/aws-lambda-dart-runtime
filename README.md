@@ -11,7 +11,7 @@ The package makes it easy to write AWS Lambda functions in the Dart programming 
 
 - Great performance `< 10ms` on event processing and `< 50MB` memory consumption
 - No need to ship the Dart runtime
-- Multople event handlers
+- Multiple event handlers
 - Typed events
 - Custom events
 
@@ -20,7 +20,7 @@ The package makes it easy to write AWS Lambda functions in the Dart programming 
 
 ## Introduction
 
-[Dart](https://dart.dev/) is a unsupported [AWS Lambda](https://aws.amazon.com/lambda/) runtime language. However, with a [custom runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) you can support virtually ever programming language.
+[Dart](https://dart.dev/) is a unsupported [AWS Lambda](https://aws.amazon.com/lambda/) runtime language. However, with a [custom runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) you can support virtually every programming language.
 
 There are two ways in which you could use [Dart](https://dart.dev/). You could bundle the Dart Runtime in a [Lambda layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) and use JIT compilation within the lambda execution to run a Dart program. The other is to compile a shipable binary of the Dart program.
 
