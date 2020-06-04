@@ -172,12 +172,19 @@ class AwsApiGatewayEventHeaders {
   @JsonKey(name: "X-Amzn-Trace-Id")
   final String xAmznTraceId;
 
-  factory AwsApiGatewayEventHeaders.fromJson(Map<String, dynamic> json) =>
-      _$AwsApiGatewayEventHeadersFromJson(json);
+  @JsonKey(ignore: true)
+  Map<String, dynamic> raw;
+
+  factory AwsApiGatewayEventHeaders.fromJson(Map<String, dynamic> json) {
+    final event = _$AwsApiGatewayEventHeadersFromJson(json);
+    event.raw = json;
+
+    return event;
+  }
 
   Map<String, dynamic> toJson() => _$AwsApiGatewayEventHeadersToJson(this);
 
-  const AwsApiGatewayEventHeaders(
+  AwsApiGatewayEventHeaders(
       {this.accept,
       this.acceptEncoding,
       this.cloudfrontIsDesktopViewer,

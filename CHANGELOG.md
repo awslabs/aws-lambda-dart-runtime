@@ -1,3 +1,7 @@
+## 1.0.4
+
+- #13 Expose raw headers on AwsApiGatewayEvent
+
 ## 1.0.3
 
 - #10 Throw exception on missing handler

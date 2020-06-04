@@ -24,7 +24,7 @@ class MockHttpHeaders extends HttpHeaders {
   List<String> operator [](String name) => <String>[];
 
   @override
-  void add(String name, Object value) {}
+  void add(String name, Object value, {bool preserveHeaderCase = false}) {}
 
   @override
   void clear() {}
@@ -42,7 +42,7 @@ class MockHttpHeaders extends HttpHeaders {
   void removeAll(String name) {}
 
   @override
-  void set(String name, Object value) {}
+  void set(String name, Object value, {bool preserveHeaderCase = false}) {}
 
   @override
   String value(String name) => null;

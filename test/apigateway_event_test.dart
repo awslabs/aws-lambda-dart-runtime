@@ -25,6 +25,8 @@ void main() {
           equals("41b45ea3-70b5-11e6-b7bd-69b5aaebc7d9"));
       expect(event.queryStringParameters, equals({"name": "me"}));
       expect(event.requestContext.resourcePath, equals("/{proxy+}"));
+      expect(event.headers.raw['Accept-Encoding'],
+          equals("gzip, deflate, lzma, sdch, br"));
     });
     test("factory creates event with default values", () {
       final response = AwsApiGatewayResponse.fromJson({});
