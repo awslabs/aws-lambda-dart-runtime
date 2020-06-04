@@ -6,26 +6,26 @@
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
   <meta name="description" content="API docs for the Runtime class from the runtime library, for the Dart programming language.">
   <title>Runtime class - runtime library - Dart API</title>
-  <!-- required because all the links are pseudo-absolute -->
-  <base href="..">
 
+  
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="static-assets/github.css">
-  <link rel="stylesheet" href="static-assets/styles.css">
-  <link rel="icon" href="static-assets/favicon.png">
-  <!-- header placeholder -->
+  <link rel="stylesheet" href="../static-assets/github.css">
+  <link rel="stylesheet" href="../static-assets/styles.css">
+  <link rel="icon" href="../static-assets/favicon.png">
+
 </head>
 
-<body>
+<body data-base-href="../"
+      data-using-base-href="false">
 
 <div id="overlay-under-drawer"></div>
 
 <header id="title">
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li><a href="index.html">aws_lambda_dart_runtime</a></li>
-    <li><a href="runtime_runtime/runtime_runtime-library.html">runtime</a></li>
+    <li><a href="../index.html">aws_lambda_dart_runtime</a></li>
+    <li><a href="../runtime_runtime/runtime_runtime-library.html">runtime</a></li>
     <li class="self-crumb">Runtime<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span> class</li>
   </ol>
   <div class="self-name">Runtime</div>
@@ -44,15 +44,15 @@
     </header>
     
     <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
-      <li><a href="index.html">aws_lambda_dart_runtime</a></li>
-      <li><a href="runtime_runtime/runtime_runtime-library.html">runtime</a></li>
+      <li><a href="../index.html">aws_lambda_dart_runtime</a></li>
+      <li><a href="../runtime_runtime/runtime_runtime-library.html">runtime</a></li>
       <li class="self-crumb">Runtime<span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span> class</li>
     </ol>
     
     <h5>runtime library</h5>
     <ol>
-      <li class="section-title"><a href="runtime_runtime/runtime_runtime-library.html#classes">Classes</a></li>
-      <li><a href="runtime_runtime/Runtime-class.html">Runtime</a></li>
+      <li class="section-title"><a href="../runtime_runtime/runtime_runtime-library.html#classes">Classes</a></li>
+      <li><a href="../runtime_runtime/Runtime-class.html">Runtime</a></li>
     
     
     
@@ -60,8 +60,8 @@
     
     
     
-      <li class="section-title"><a href="runtime_runtime/runtime_runtime-library.html#typedefs">Typedefs</a></li>
-      <li><a href="runtime_runtime/Handler.html">Handler</a></li>
+      <li class="section-title"><a href="../runtime_runtime/runtime_runtime-library.html#typedefs">Typedefs</a></li>
+      <li><a href="../runtime_runtime/Handler.html">Handler</a></li>
     
     </ol>
   </div>
@@ -72,7 +72,7 @@
     <section class="desc markdown">
       <p>A Runtime manages the interface to the Lambda API.</p>
 <p>The Runtime is designed as singleton and <code>Runtime.instance</code>
-returns the same instance of the <a href="runtime_runtime/Runtime-class.html">Runtime</a> everytime.</p>
+returns the same instance of the <a href="../runtime_runtime/Runtime-class.html">Runtime</a> everytime.</p>
 <pre class="language-dart"><code class="language-dart">final Handler&lt;AwsS3NotificationEvent&gt; helloWorldHandler =
   (context, event) async {
    return new InvocationResult(context.requestId, "HELLO WORLD");
@@ -91,10 +91,10 @@ await Runtime.instance
 
       <dl class="constructor-summary-list">
         <dt id="Runtime" class="callable">
-          <span class="name"><a href="runtime_runtime/Runtime/Runtime.html">Runtime</a></span><span class="signature">()</span>
+          <span class="name"><a href="../runtime_runtime/Runtime/Runtime.html">Runtime</a></span><span class="signature">()</span>
         </dt>
         <dd>
-          
+           
           <div class="constructor-modifier features">factory</div>
         </dd>
       </dl>
@@ -105,29 +105,29 @@ await Runtime.instance
 
       <dl class="properties">
         <dt id="handlers" class="property">
-          <span class="name"><a href="runtime_runtime/Runtime/handlers.html">handlers</a></span>
+          <span class="name"><a href="../runtime_runtime/Runtime/handlers.html">handlers</a></span>
           <span class="signature">&#8594; List<span class="signature">&lt;<wbr><span class="type-parameter">String</span>&gt;</span></span>         
         </dt>
         <dd>
           Lists the registered handlers by name.
 The name is a simple <code>String</code> which reflects
-the name of the trigger in the Lambda Execution API.
+the name of the trigger in the Lambda Execution API. 
                   <div class="features">read-only</div>
 </dd>
         <dt id="hashCode" class="property inherited">
-          <span class="name"><a href="runtime_runtime/Runtime/hashCode.html">hashCode</a></span>
+          <span class="name"><a href="../runtime_runtime/Runtime/hashCode.html">hashCode</a></span>
           <span class="signature">&#8594; int</span>         
         </dt>
         <dd class="inherited">
-          The hash code for this object. <a href="runtime_runtime/Runtime/hashCode.html">[...]</a>
+          The hash code for this object. <a href="../runtime_runtime/Runtime/hashCode.html">[...]</a>
                   <div class="features">read-only, inherited</div>
 </dd>
         <dt id="runtimeType" class="property inherited">
-          <span class="name"><a href="runtime_runtime/Runtime/runtimeType.html">runtimeType</a></span>
+          <span class="name"><a href="../runtime_runtime/Runtime/runtimeType.html">runtimeType</a></span>
           <span class="signature">&#8594; Type</span>         
         </dt>
         <dd class="inherited">
-          A representation of the runtime type of the object.
+          A representation of the runtime type of the object. 
                   <div class="features">read-only, inherited</div>
 </dd>
       </dl>
@@ -137,81 +137,81 @@ the name of the trigger in the Lambda Execution API.
       <h2>Methods</h2>
       <dl class="callables">
         <dt id="deregisterEvent" class="callable">
-          <span class="name"><a href="runtime_runtime/Runtime/deregisterEvent.html">deregisterEvent</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr>)
+          <span class="name"><a href="../runtime_runtime/Runtime/deregisterEvent.html">deregisterEvent</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr>)
             <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
         <dd>
           Deregister an new event to be ingested by a handler.
-The type should reflect your type in your handler definition <a href="runtime_runtime/Handler.html">Handler&lt;T&gt;</a>.
+The type should reflect your type in your handler definition <a href="../runtime_runtime/Handler.html">Handler&lt;T&gt;</a>. 
                   
 </dd>
         <dt id="deregisterHandler" class="callable">
-          <span class="name"><a href="runtime_runtime/Runtime/deregisterHandler.html">deregisterHandler</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="deregisterHandler-param-name"><span class="type-annotation">String</span> <span class="parameter-name">name</span></span>)
-            <span class="returntype parameter">&#8594; <a href="runtime_runtime/Handler.html">Handler</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+          <span class="name"><a href="../runtime_runtime/Runtime/deregisterHandler.html">deregisterHandler</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="deregisterHandler-param-name"><span class="type-annotation">String</span> <span class="parameter-name">name</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="../runtime_runtime/Handler.html">Handler</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
           </span>
                   </dt>
         <dd>
-          Unregister a handler function <a href="runtime_runtime/Handler.html">Handler&lt;T&gt;</a> with <code>name</code>.
+          Unregister a handler function <a href="../runtime_runtime/Handler.html">Handler&lt;T&gt;</a> with <code>name</code>. 
                   
 </dd>
         <dt id="handlerExists" class="callable">
-          <span class="name"><a href="runtime_runtime/Runtime/handlerExists.html">handlerExists</a></span><span class="signature">(<wbr><span class="parameter" id="handlerExists-param-name"><span class="type-annotation">String</span> <span class="parameter-name">name</span></span>)
+          <span class="name"><a href="../runtime_runtime/Runtime/handlerExists.html">handlerExists</a></span><span class="signature">(<wbr><span class="parameter" id="handlerExists-param-name"><span class="type-annotation">String</span> <span class="parameter-name">name</span></span><wbr>)
             <span class="returntype parameter">&#8594; bool</span>
           </span>
                   </dt>
         <dd>
           Checks if a specific handlers has been registered
-with the runtime.
+with the runtime. 
                   
 </dd>
         <dt id="invoke" class="callable">
-          <span class="name"><a href="runtime_runtime/Runtime/invoke.html">invoke</a></span><span class="signature">(<wbr>)
+          <span class="name"><a href="../runtime_runtime/Runtime/invoke.html">invoke</a></span><span class="signature">(<wbr>)
             <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
         <dd>
-          Run the <a href="runtime_runtime/Runtime-class.html">Runtime</a> in loop and digest events that are
+          Run the <a href="../runtime_runtime/Runtime-class.html">Runtime</a> in loop and digest events that are
 fetched from the AWS Lambda API Interface. The events are processed
-sequentially and are fetched from the AWS Lambda API Interface. <a href="runtime_runtime/Runtime/invoke.html">[...]</a>
+sequentially and are fetched from the AWS Lambda API Interface. <a href="../runtime_runtime/Runtime/invoke.html">[...]</a>
                   
 </dd>
         <dt id="registerEvent" class="callable">
-          <span class="name"><a href="runtime_runtime/Runtime/registerEvent.html">registerEvent</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="registerEvent-param-func"><span class="type-annotation">dynamic</span> <span class="parameter-name">func</span></span>)
+          <span class="name"><a href="../runtime_runtime/Runtime/registerEvent.html">registerEvent</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="registerEvent-param-func"><span class="type-annotation">dynamic</span> <span class="parameter-name">func</span></span><wbr>)
             <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
         <dd>
           Register an new event to be ingested by a handler.
-The type should reflect your type in your handler definition <a href="runtime_runtime/Handler.html">Handler&lt;T&gt;</a>.
+The type should reflect your type in your handler definition <a href="../runtime_runtime/Handler.html">Handler&lt;T&gt;</a>. 
                   
 </dd>
         <dt id="registerHandler" class="callable">
-          <span class="name"><a href="runtime_runtime/Runtime/registerHandler.html">registerHandler</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="registerHandler-param-name"><span class="type-annotation">String</span> <span class="parameter-name">name</span>, </span> <span class="parameter" id="registerHandler-param-handler"><span class="type-annotation"><a href="runtime_runtime/Handler.html">Handler</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">handler</span></span>)
-            <span class="returntype parameter">&#8594; <a href="runtime_runtime/Handler.html">Handler</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
+          <span class="name"><a href="../runtime_runtime/Runtime/registerHandler.html">registerHandler</a></span><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span><span class="signature">(<wbr><span class="parameter" id="registerHandler-param-name"><span class="type-annotation">String</span> <span class="parameter-name">name</span>, </span><wbr><span class="parameter" id="registerHandler-param-handler"><span class="type-annotation"><a href="../runtime_runtime/Handler.html">Handler</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span> <span class="parameter-name">handler</span></span><wbr>)
+            <span class="returntype parameter">&#8594; <a href="../runtime_runtime/Handler.html">Handler</a><span class="signature">&lt;<wbr><span class="type-parameter">T</span>&gt;</span></span>
           </span>
                   </dt>
         <dd>
-          Register a handler function <a href="runtime_runtime/Handler.html">Handler&lt;T&gt;</a> with <code>name</code>
-which digests an event <code>T</code>.
+          Register a handler function <a href="../runtime_runtime/Handler.html">Handler&lt;T&gt;</a> with <code>name</code>
+which digests an event <code>T</code>. 
                   
 </dd>
         <dt id="noSuchMethod" class="callable inherited">
-          <span class="name"><a href="runtime_runtime/Runtime/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+          <span class="name"><a href="../runtime_runtime/Runtime/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span><wbr>)
             <span class="returntype parameter">&#8594; dynamic</span>
           </span>
                   </dt>
         <dd class="inherited">
-          Invoked when a non-existent method or property is accessed. <a href="runtime_runtime/Runtime/noSuchMethod.html">[...]</a>
+          Invoked when a non-existent method or property is accessed. <a href="../runtime_runtime/Runtime/noSuchMethod.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
         <dt id="toString" class="callable inherited">
-          <span class="name"><a href="runtime_runtime/Runtime/toString.html">toString</a></span><span class="signature">(<wbr>)
+          <span class="name"><a href="../runtime_runtime/Runtime/toString.html">toString</a></span><span class="signature">(<wbr>)
             <span class="returntype parameter">&#8594; String</span>
           </span>
                   </dt>
         <dd class="inherited">
-          Returns a string representation of this object.
+          Returns a string representation of this object. 
                   <div class="features">inherited</div>
 </dd>
       </dl>
@@ -221,12 +221,12 @@ which digests an event <code>T</code>.
       <h2>Operators</h2>
       <dl class="callables">
         <dt id="operator ==" class="callable inherited">
-          <span class="name"><a href="runtime_runtime/Runtime/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+          <span class="name"><a href="../runtime_runtime/Runtime/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span><wbr>)
             <span class="returntype parameter">&#8594; bool</span>
           </span>
                   </dt>
         <dd class="inherited">
-          The equality operator. <a href="runtime_runtime/Runtime/operator_equals.html">[...]</a>
+          The equality operator. <a href="../runtime_runtime/Runtime/operator_equals.html">[...]</a>
                   <div class="features">inherited</div>
 </dd>
       </dl>
@@ -240,28 +240,28 @@ which digests an event <code>T</code>.
   <div id="dartdoc-sidebar-right" class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
     <ol>
     
-      <li class="section-title"><a href="runtime_runtime/Runtime-class.html#constructors">Constructors</a></li>
-      <li><a href="runtime_runtime/Runtime/Runtime.html">Runtime</a></li>
+      <li class="section-title"><a href="../runtime_runtime/Runtime-class.html#constructors">Constructors</a></li>
+      <li><a href="../runtime_runtime/Runtime/Runtime.html">Runtime</a></li>
     
       <li class="section-title">
-        <a href="runtime_runtime/Runtime-class.html#instance-properties">Properties</a>
+        <a href="../runtime_runtime/Runtime-class.html#instance-properties">Properties</a>
       </li>
-      <li><a href="runtime_runtime/Runtime/handlers.html">handlers</a></li>
-      <li class="inherited"><a href="runtime_runtime/Runtime/hashCode.html">hashCode</a></li>
-      <li class="inherited"><a href="runtime_runtime/Runtime/runtimeType.html">runtimeType</a></li>
+      <li><a href="../runtime_runtime/Runtime/handlers.html">handlers</a></li>
+      <li class="inherited"><a href="../runtime_runtime/Runtime/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="../runtime_runtime/Runtime/runtimeType.html">runtimeType</a></li>
     
-      <li class="section-title"><a href="runtime_runtime/Runtime-class.html#instance-methods">Methods</a></li>
-      <li><a href="runtime_runtime/Runtime/deregisterEvent.html">deregisterEvent</a></li>
-      <li><a href="runtime_runtime/Runtime/deregisterHandler.html">deregisterHandler</a></li>
-      <li><a href="runtime_runtime/Runtime/handlerExists.html">handlerExists</a></li>
-      <li><a href="runtime_runtime/Runtime/invoke.html">invoke</a></li>
-      <li><a href="runtime_runtime/Runtime/registerEvent.html">registerEvent</a></li>
-      <li><a href="runtime_runtime/Runtime/registerHandler.html">registerHandler</a></li>
-      <li class="inherited"><a href="runtime_runtime/Runtime/noSuchMethod.html">noSuchMethod</a></li>
-      <li class="inherited"><a href="runtime_runtime/Runtime/toString.html">toString</a></li>
+      <li class="section-title"><a href="../runtime_runtime/Runtime-class.html#instance-methods">Methods</a></li>
+      <li><a href="../runtime_runtime/Runtime/deregisterEvent.html">deregisterEvent</a></li>
+      <li><a href="../runtime_runtime/Runtime/deregisterHandler.html">deregisterHandler</a></li>
+      <li><a href="../runtime_runtime/Runtime/handlerExists.html">handlerExists</a></li>
+      <li><a href="../runtime_runtime/Runtime/invoke.html">invoke</a></li>
+      <li><a href="../runtime_runtime/Runtime/registerEvent.html">registerEvent</a></li>
+      <li><a href="../runtime_runtime/Runtime/registerHandler.html">registerHandler</a></li>
+      <li class="inherited"><a href="../runtime_runtime/Runtime/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="../runtime_runtime/Runtime/toString.html">toString</a></li>
     
-      <li class="section-title inherited"><a href="runtime_runtime/Runtime-class.html#operators">Operators</a></li>
-      <li class="inherited"><a href="runtime_runtime/Runtime/operator_equals.html">operator ==</a></li>
+      <li class="section-title inherited"><a href="../runtime_runtime/Runtime-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="../runtime_runtime/Runtime/operator_equals.html">operator ==</a></li>
     
     
     
@@ -277,15 +277,14 @@ which digests an event <code>T</code>.
       1.0.3
   </span>
 
-  <!-- footer-text placeholder -->
 </footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="static-assets/typeahead.bundle.min.js"></script>
-<script src="static-assets/highlight.pack.js"></script>
-<script src="static-assets/URI.js"></script>
-<script src="static-assets/script.js"></script>
-<!-- footer placeholder -->
+<script src="../static-assets/typeahead.bundle.min.js"></script>
+<script src="../static-assets/highlight.pack.js"></script>
+<script src="../static-assets/URI.js"></script>
+<script src="../static-assets/script.js"></script>
+
 
 </body>
 
