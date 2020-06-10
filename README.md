@@ -34,7 +34,7 @@ We want to highlight [Firecracker open-source innovation](https://www.youtube.co
 
 ```
 dependencies:
-  aws_lambda_dart_runtime:
+  aws_lambda_dart_runtime: ^1.0.3+1
 ```
 
 [Docs](https://awslabs.github.io/aws-lambda-dart-runtime/) are available. They are also accessible in the [`docs`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/docs) folder.
