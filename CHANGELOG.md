@@ -1,3 +1,7 @@
+## 1.0.3+2
+
+- #14 Adding type signatured to API Gateway response
+
 ## 1.0.3+1
 
 - #13 Expose raw headers on AwsApiGatewayEvent
