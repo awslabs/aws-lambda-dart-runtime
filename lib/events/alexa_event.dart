@@ -44,22 +44,3 @@ class AwsAlexaEvent {
 
   const AwsAlexaEvent({this.header, this.payload});
 }
-
-// {
-//   "header": {
-//     "payloadVersion": "1",
-//     "namespace": "Control",
-//     "name": "SwitchOnOffRequest"
-//   },
-//   "payload": {
-//     "switchControlAction": "TURN_ON",
-//     "appliance": {
-//       "additionalApplianceDetails": {
-//         "key2": "value2",
-//         "key1": "value1"
-//       },
-//       "applianceId": "sampleId"
-//     },
-//     "accessToken": "sampleAccessToken"
-//   }
-// }

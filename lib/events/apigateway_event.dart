@@ -48,10 +48,10 @@ class AwsApiGatewayResponse {
   /// But also it signals if the [body] is Base64 encoded and what the HTTP Status Code
   /// of the response is.
   AwsApiGatewayResponse({
-    body,
-    isBase64Encoded,
-    headers,
-    statusCode,
+    String body,
+    bool isBase64Encoded,
+    Map<String, String> headers,
+    int statusCode,
   }) {
     this.body = body ?? '';
     this.isBase64Encoded = isBase64Encoded ?? false;
