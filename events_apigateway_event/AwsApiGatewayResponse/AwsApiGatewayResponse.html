@@ -87,10 +87,10 @@
 
     <section class="multi-line-signature">
       
-      <span class="name ">AwsApiGatewayResponse</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-body">{<span class="type-annotation">dynamic</span> <span class="parameter-name">body</span>, </span></li>
-<li><span class="parameter" id="-param-isBase64Encoded"><span class="type-annotation">dynamic</span> <span class="parameter-name">isBase64Encoded</span>, </span></li>
-<li><span class="parameter" id="-param-headers"><span class="type-annotation">dynamic</span> <span class="parameter-name">headers</span>, </span></li>
-<li><span class="parameter" id="-param-statusCode"><span class="type-annotation">dynamic</span> <span class="parameter-name">statusCode</span>}</span></li>
+      <span class="name ">AwsApiGatewayResponse</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="-param-body">{<span class="type-annotation">String</span> <span class="parameter-name">body</span>, </span></li>
+<li><span class="parameter" id="-param-isBase64Encoded"><span class="type-annotation">bool</span> <span class="parameter-name">isBase64Encoded</span>, </span></li>
+<li><span class="parameter" id="-param-headers"><span class="type-annotation">Map<span class="signature">&lt;<wbr><span class="type-parameter">String</span>, <span class="type-parameter">String</span>&gt;</span></span> <span class="parameter-name">headers</span>, </span></li>
+<li><span class="parameter" id="-param-statusCode"><span class="type-annotation">int</span> <span class="parameter-name">statusCode</span>}</span></li>
 </ol>)
     </section>
 
@@ -104,10 +104,10 @@ of the response is.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">AwsApiGatewayResponse({
-  body,
-  isBase64Encoded,
-  headers,
-  statusCode,
+  String body,
+  bool isBase64Encoded,
+  Map&lt;String, String&gt; headers,
+  int statusCode,
 }) {
   this.body = body ?? &#39;&#39;;
   this.isBase64Encoded = isBase64Encoded ?? false;
