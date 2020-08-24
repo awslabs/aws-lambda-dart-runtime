@@ -7,6 +7,8 @@ The package makes it easy to write AWS Lambda functions in the Dart programming 
 
 > If you want to learn more about the project you can read the [introduction](https://aws.amazon.com/de/blogs/opensource/introducing-a-dart-runtime-for-aws-lambda/).
 
+> If you need to access AWS APIs in your Lambda function, [please search on pub.dev](https://pub.dev/packages?q=dependency%3Ashared_aws_api&sort=popularity) provided by [Agilord](https://www.agilord.com/)
+
 ## Features
 
 - Great performance `< 10ms` on event processing and `< 50MB` memory consumption
