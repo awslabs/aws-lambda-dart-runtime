@@ -95,10 +95,10 @@
 currently <code>dart2native</code> only supports building for the platform it is run on, so you must either build on a <code>Linux</code> machine or use <code>docker</code></p>
 </blockquote>
 <h2 id="introduction">Introduction</h2>
-<p><a href="https://dart.dev/">Dart</a> is a unsupported <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> runtime language. However, with a <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html">custom runtime</a> you can support virtually every programming language.</p>
-<p>There are two ways in which you could use <a href="https://dart.dev/">Dart</a>. You could bundle the Dart Runtime in a <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layer</a> and use JIT compilation within the lambda execution to run a Dart program. The other is to compile a shipable binary of the Dart program.</p>
+<p><a href="https://dart.dev/">Dart</a> is an unsupported <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> runtime language. However, with a <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html">custom runtime</a> you can support virtually every programming language.</p>
+<p>There are two ways in which you could use <a href="https://dart.dev/">Dart</a>. You could bundle the Dart Runtime in a <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layer</a> and use JIT compilation within the lambda execution to run a Dart program. The other is to compile a shippable binary of the Dart program.</p>
 <p>Dart <code>&gt;= 2.6</code> introduced <code>dart2native</code>. The <a href="https://dart.dev/tools/dart2native">tool</a> uses AOT (ahead-of-time) to compile a Dart program to <a href="https://dart.dev/platforms">native x64 machine code</a>. This standalone executable is native machine code that's compiled from the specific Dart file and its dependencies, plus a small Dart runtime that handles type checking and garbage collection.</p>
-<p>We decided to use the later approach rather then the just-in-time compilation of Dart files. The main reason for this decision is that we wanted to avoid having to ship and maintain a standalone Dart runtime version. We would eventually have to deprecate versions, or always update the version when moving forward. Furthermore, shipping a binary has the advantage of having an always runnable version of your function in addition to performance benefits.</p>
+<p>We decided to use the latter approach rather then the just-in-time compilation of Dart files. The main reason for this decision is that we wanted to avoid having to ship and maintain a standalone Dart runtime version. We would eventually have to deprecate versions, or always update the version when moving forward. Furthermore, shipping a binary has the advantage of having an always runnable version of your function in addition to performance benefits.</p>
 <p>We want to highlight <a href="https://www.youtube.com/watch?v=yDplzXEdBTI">Firecracker open-source innovation</a> from re:Invent 2019 which gives you a brief overview of <a href="https://firecracker-microvm.github.io/">Firecracker</a> which is the underlying technology of AWS Lambda.</p>
 <h2 id="use">Use</h2>
 <pre class="language-dart"><code>dependencies:
@@ -173,7 +173,7 @@ dependencies:
   aws_lambda_dart_runtime:
 ...
 </code></pre>
-<p>We support to use multiple handlers in one executable. The following example shows to register one handler.</p>
+<p>We support using multiple handlers in one executable. The following example shows to register one handler.</p>
 <pre class="language-dart"><code class="language-dart">import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart';
 
 void main() async {
@@ -194,7 +194,7 @@ void main() async {
 </code></pre>
 <p>This example registers the <code>hello.apigateway</code> handler with the function to execute for this handler. The handler function is typed to receive a <a href="https://aws.amazon.com/api-gateway">Amazon API Gateway Event</a> and it returns a response to the invoking gateway. We support many other <a href="#events">events</a>. Handler functions get a <code>Context</code> injected with the needed information about the invocation. You can also register your own custom events via <code>Runtime.registerEvent&lt;T&gt;(Handler&lt;T&gt;)</code> (see <a href="#events">events</a>).</p>
 <h3 id="deployment">Deployment</h3>
-<p>The deployment is a manual task right now. We have a <a href="https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh"><code>example/build.sh</code></a> script which make the process a bit easier. There are three steps to get your code ready to be shipped.</p>
+<p>The deployment is a manual task right now. We have a <a href="https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh"><code>example/build.sh</code></a> script which makes the process a bit easier. There are three steps to get your code ready to be shipped.</p>
 <ol>
 <li>Compile your Dart program with <code>dart2native main.dart -o bootstrap</code></li>
 <li>Create a <code>.zip</code> file with <code>zip lambda.zip bootstrap</code></li>
