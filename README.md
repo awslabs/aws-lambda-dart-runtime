@@ -22,13 +22,13 @@ The package makes it easy to write AWS Lambda functions in the Dart programming 
 
 ## Introduction
 
-[Dart](https://dart.dev/) is a unsupported [AWS Lambda](https://aws.amazon.com/lambda/) runtime language. However, with a [custom runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) you can support virtually every programming language.
+[Dart](https://dart.dev/) is an unsupported [AWS Lambda](https://aws.amazon.com/lambda/) runtime language. However, with a [custom runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) you can support virtually every programming language.
 
-There are two ways in which you could use [Dart](https://dart.dev/). You could bundle the Dart Runtime in a [Lambda layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) and use JIT compilation within the lambda execution to run a Dart program. The other is to compile a shipable binary of the Dart program.
+There are two ways in which you could use [Dart](https://dart.dev/). You could bundle the Dart Runtime in a [Lambda layer](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) and use JIT compilation within the lambda execution to run a Dart program. The other is to compile a shippable binary of the Dart program.
 
 Dart `>= 2.6` introduced `dart2native`. The [tool](https://dart.dev/tools/dart2native) uses AOT (ahead-of-time) to compile a Dart program to [native x64 machine code](https://dart.dev/platforms). This standalone executable is native machine code that's compiled from the specific Dart file and its dependencies, plus a small Dart runtime that handles type checking and garbage collection.
 
-We decided to use the later approach rather then the just-in-time compilation of Dart files. The main reason for this decision is that we wanted to avoid having to ship and maintain a standalone Dart runtime version. We would eventually have to deprecate versions, or always update the version when moving forward. Furthermore, shipping a binary has the advantage of having an always runnable version of your function in addition to performance benefits.
+We decided to use the latter approach rather then the just-in-time compilation of Dart files. The main reason for this decision is that we wanted to avoid having to ship and maintain a standalone Dart runtime version. We would eventually have to deprecate versions, or always update the version when moving forward. Furthermore, shipping a binary has the advantage of having an always runnable version of your function in addition to performance benefits.
 
 We want to highlight [Firecracker open-source innovation](https://www.youtube.com/watch?v=yDplzXEdBTI) from re:Invent 2019 which gives you a brief overview of [Firecracker](https://firecracker-microvm.github.io/) which is the underlying technology of AWS Lambda.
 
@@ -123,7 +123,7 @@ dependencies:
 ...
 ```
 
-We support to use multiple handlers in one executable. The following example shows to register one handler.
+We support using multiple handlers in one executable. The following example shows to register one handler.
 
 ```dart
 import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart';
@@ -149,7 +149,7 @@ This example registers the `hello.apigateway` handler with the function to execu
 
 ### Deployment
 
-The deployment is a manual task right now. We have a [`example/build.sh`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh) script which make the process a bit easier. There are three steps to get your code ready to be shipped.
+The deployment is a manual task right now. We have a [`example/build.sh`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh) script which makes the process a bit easier. There are three steps to get your code ready to be shipped.
 
 1. Compile your Dart program with `dart2native main.dart -o bootstrap`
 2. Create a `.zip` file with `zip lambda.zip bootstrap`
