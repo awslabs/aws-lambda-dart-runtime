@@ -34,6 +34,12 @@ We want to highlight [Firecracker open-source innovation](https://www.youtube.co
 
 ## Use
 
+## 🧪 Serverless Framework (experimental)
+
+Checkout [serverless-dart](https://github.com/katallaxie/serverless-dart) to create your functions with [serverless](https://serverless.com).
+
+## Custom build
+
 ```
 dependencies:
   aws_lambda_dart_runtime: ^1.0.3+1
@@ -51,7 +57,6 @@ dhttpd --path docs
 
 ## Future & Ideas
 
-- Support [Serverless framework](https://serverless.com/framework/)
 - Automate the build process
 - Better tracing and logging
 
