@@ -101,6 +101,9 @@ currently <code>dart2native</code> only supports building for the platform it is
 <p>We decided to use the latter approach rather then the just-in-time compilation of Dart files. The main reason for this decision is that we wanted to avoid having to ship and maintain a standalone Dart runtime version. We would eventually have to deprecate versions, or always update the version when moving forward. Furthermore, shipping a binary has the advantage of having an always runnable version of your function in addition to performance benefits.</p>
 <p>We want to highlight <a href="https://www.youtube.com/watch?v=yDplzXEdBTI">Firecracker open-source innovation</a> from re:Invent 2019 which gives you a brief overview of <a href="https://firecracker-microvm.github.io/">Firecracker</a> which is the underlying technology of AWS Lambda.</p>
 <h2 id="use">Use</h2>
+<h2 id="-serverless-framework-experimental">🧪 Serverless Framework (experimental)</h2>
+<p>Checkout <a href="https://github.com/katallaxie/serverless-dart">serverless-dart</a> to create your functions with <a href="https://serverless.com">serverless</a>.</p>
+<h2 id="custom-build">Custom build</h2>
 <pre class="language-dart"><code>dependencies:
   aws_lambda_dart_runtime: ^1.0.3+1
 </code></pre>
@@ -114,7 +117,6 @@ dhttpd --path docs
 </blockquote>
 <h2 id="future--ideas">Future &amp; Ideas</h2>
 <ul>
-<li>Support <a href="https://serverless.com/framework/">Serverless framework</a></li>
 <li>Automate the build process</li>
 <li>Better tracing and logging</li>
 </ul>
