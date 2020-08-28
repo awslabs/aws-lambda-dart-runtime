@@ -3,11 +3,13 @@
 ![Main](https://github.com/awslabs/aws-lambda-dart-runtime/workflows/Main/badge.svg?branch=master)
 [![License Apache 2](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-The package makes it easy to write AWS Lambda functions in the Dart programming language.
+<p align="center">
+   A 🎯 <a href="https://dart.dev/">Dart</a> Runtime for ƛ <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>
+</p>
 
-> If you want to learn more about the project you can read the [introduction](https://aws.amazon.com/de/blogs/opensource/introducing-a-dart-runtime-for-aws-lambda/).
+> Read [Introducing a Dart runtime for AWS Lambda](https://aws.amazon.com/de/blogs/opensource/introducing-a-dart-runtime-for-aws-lambda/).
 
-> If you need to access AWS APIs in your Lambda function, [please search on pub.dev](https://pub.dev/packages?q=dependency%3Ashared_aws_api&sort=popularity) provided by [Agilord](https://www.agilord.com/)
+> If you need to access AWS APIs in your Lambda function, [please search on pub.dev](https://pub.dev/packages?q=dependency%3Ashared_aws_api&sort=popularity) for packages provided by [Agilord](https://www.agilord.com/)
 
 ## Features
 
@@ -20,7 +22,7 @@ The package makes it easy to write AWS Lambda functions in the Dart programming 
 > this package requires Dart `>= 2.6`
 > currently `dart2native` only supports building for the platform it is run on, so you must either build on a `Linux` machine or use `docker`
 
-## Introduction
+## 🚀 Introduction
 
 [Dart](https://dart.dev/) is an unsupported [AWS Lambda](https://aws.amazon.com/lambda/) runtime language. However, with a [custom runtime](https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html) you can support virtually every programming language.
 
@@ -32,15 +34,11 @@ We decided to use the latter approach rather then the just-in-time compilation o
 
 We want to highlight [Firecracker open-source innovation](https://www.youtube.com/watch?v=yDplzXEdBTI) from re:Invent 2019 which gives you a brief overview of [Firecracker](https://firecracker-microvm.github.io/) which is the underlying technology of AWS Lambda.
 
-## Use
+## 📦 Use
 
-## 🧪 Serverless Framework (experimental)
+Add the following snippet to your [pubspec file](https://dart.dev/tools/pub/pubspec) in `pubspec.yaml`.
 
-Checkout [serverless-dart](https://github.com/katallaxie/serverless-dart) to create your functions with [serverless](https://serverless.com).
-
-## Custom build
-
-```
+```yaml
 dependencies:
   aws_lambda_dart_runtime: ^1.0.3+1
 ```
@@ -55,16 +53,40 @@ dhttpd --path docs
 
 > you can generate the docs with `dartdoc --output docs`
 
-## Future & Ideas
+Build and deploy the Dart functions by the [serverless](https://serverless.com) framework or by custom deployment.
 
-- Automate the build process
-- Better tracing and logging
+## 🧪 Serverless Framework (experimental)
 
-## Limitations
+Checkout [serverless-dart](https://github.com/katallaxie/serverless-dart) to create your functions with [serverless](https://serverless.com).
 
-- No Just-in-time (JIT) support
-- Requires Dart `>= 2.6`
-- No cross-platform compile support (see [#28617](https://github.com/dart-lang/sdk/issues/28617)).
+## Custom deployment
+
+The deployment is a manual task right now. We have a [`example/build.sh`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh) script which makes the process a bit easier. There are three steps to get your code ready to be shipped.
+
+1. Compile your Dart program with `dart2native main.dart -o bootstrap`
+2. Create a `.zip` file with `zip lambda.zip bootstrap`
+3. Upload the `lambda.zip` to a S3 bucket or use the [AWS CLI](https://aws.amazon.com/cli) to upload it
+
+> again, you have to build this on Linux, because `dart2native` does not support cross-compiling
+
+When you created your function and upload it via the the console. Please, replace `arn:aws:iam::xxx:xxx` with the role you created for your lambda.
+
+```bash
+aws lambda create-function --function-name dartTest \
+  --handler hello.apigateway \
+  --zip-file fileb://./lambda.zip \
+  --runtime provided \
+  --role arn:aws:iam::xxx:xxx \
+  --environment Variables={DART_BACKTRACE=1} \
+  --tracing-config Mode=Active
+```
+
+Updating a function is a fairly easy task. Rebuild your `lambda.zip` package and execute the following command.
+
+```bash
+aws lambda update-function-code --function-name dartTest --zip-file fileb://./lambda.zip
+
+```
 
 ## Events
 
@@ -152,34 +174,11 @@ void main() async {
 
 This example registers the `hello.apigateway` handler with the function to execute for this handler. The handler function is typed to receive a [Amazon API Gateway Event](https://aws.amazon.com/api-gateway) and it returns a response to the invoking gateway. We support many other [events](#events). Handler functions get a `Context` injected with the needed information about the invocation. You can also register your own custom events via `Runtime.registerEvent<T>(Handler<T>)` (see [events](#events)).
 
-### Deployment
+## Limitations
 
-The deployment is a manual task right now. We have a [`example/build.sh`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh) script which makes the process a bit easier. There are three steps to get your code ready to be shipped.
-
-1. Compile your Dart program with `dart2native main.dart -o bootstrap`
-2. Create a `.zip` file with `zip lambda.zip bootstrap`
-3. Upload the `lambda.zip` to a S3 bucket or use the [AWS CLI](https://aws.amazon.com/cli) to upload it
-
-> again, you have to build this on Linux, because `dart2native` does not support cross-compiling
-
-When you created your function and upload it via the the console. Please, replace `arn:aws:iam::xxx:xxx` with the role you created for your lambda.
-
-```bash
-aws lambda create-function --function-name dartTest \
-  --handler hello.apigateway \
-  --zip-file fileb://./lambda.zip \
-  --runtime provided \
-  --role arn:aws:iam::xxx:xxx \
-  --environment Variables={DART_BACKTRACE=1} \
-  --tracing-config Mode=Active
-```
-
-Updating a function is a fairly easy task. Rebuild your `lambda.zip` package and execute the following command.
-
-```
-aws lambda update-function-code --function-name dartTest --zip-file fileb://./lambda.zip
-
-```
+- No Just-in-time (JIT) support
+- Requires Dart `>= 2.6`
+- No cross-platform compile support (see [#28617](https://github.com/dart-lang/sdk/issues/28617)).
 
 ## Development
 
