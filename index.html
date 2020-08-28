@@ -116,7 +116,7 @@ dhttpd --path docs
 <p>you can generate the docs with <code>dartdoc --output docs</code></p>
 </blockquote>
 <p>Build and deploy the Dart functions by the <a href="https://serverless.com">serverless</a> framework or by custom deployment.</p>
-<h2 id="-serverless-framework-experimental">🧪 Serverless Framework (experimental)</h2>
+<h3 id="-serverless-framework-experimental">🧪 Serverless Framework (experimental)</h3>
 <p>Checkout <a href="https://github.com/katallaxie/serverless-dart">serverless-dart</a> to create your functions with <a href="https://serverless.com">serverless</a>.</p>
 <p>You can start your next project using the <a href="https://github.com/katallaxie/serverless-aws-dart">serverless-aws-dart</a> template.</p>
 <pre class="language-bash"><code class="language-bash">$ npx serverless install \
@@ -125,7 +125,7 @@ dhttpd --path docs
 </code></pre>
 <p>Every <a href="https://www.serverless.com/framework/docs/providers/aws/guide/workflow/">serverless workflow command</a> should work out of the box. The template also includes an example <a href="https://github.com/features/actions">GitHub actions</a> <a href=".github/workflows/main.yml">configuration file</a> which can unlock a virtuous cycle of continuous integration and deployment
 ( i.e all tests are run on prs and every push to master results in a deployment).</p>
-<h2 id="custom-deployment">Custom deployment</h2>
+<h3 id="custom-deployment">Custom deployment</h3>
 <p>The deployment is a manual task right now. We have a <a href="https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh"><code>example/build.sh</code></a> script which makes the process a bit easier. There are three steps to get your code ready to be shipped.</p>
 <ol>
 <li>Compile your Dart program with <code>dart2native main.dart -o bootstrap</code></li>
