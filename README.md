@@ -3,15 +3,15 @@
 ![Main](https://github.com/awslabs/aws-lambda-dart-runtime/workflows/Main/badge.svg?branch=master)
 [![License Apache 2](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
----
-
 <p align="center">
    A 🎯 <a href="https://dart.dev/">Dart</a> Runtime for ƛ <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>
 </p>
 
 ---
 
-> Read [Introducing a Dart runtime for AWS Lambda](https://aws.amazon.com/de/blogs/opensource/introducing-a-dart-runtime-for-aws-lambda/).
+> Read [Introducing a Dart runtime for AWS Lambda](https://aws.amazon.com/de/blogs/opensource/introducing-a-dart-runtime-for-aws-lambda/)
+
+> 🚀 [Experimental support](#-serverless-framework-experimental) for ⚡️ serverless framework
 
 > If you need to access AWS APIs in your Lambda function, [please search on pub.dev](https://pub.dev/packages?q=dependency%3Ashared_aws_api&sort=popularity) for packages provided by [Agilord](https://www.agilord.com/)
 
@@ -44,7 +44,7 @@ Add the following snippet to your [pubspec file](https://dart.dev/tools/pub/pubs
 
 ```yaml
 dependencies:
-  aws_lambda_dart_runtime: ^1.0.3+1
+  aws_lambda_dart_runtime: ^1.0.3+2
 ```
 
 [Docs](https://awslabs.github.io/aws-lambda-dart-runtime/) are available. They are also accessible in the [`docs`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/docs) folder.
@@ -59,11 +59,22 @@ dhttpd --path docs
 
 Build and deploy the Dart functions by the [serverless](https://serverless.com) framework or by custom deployment.
 
-## 🧪 Serverless Framework (experimental)
+### 🧪 Serverless Framework (experimental)
 
 Checkout [serverless-dart](https://github.com/katallaxie/serverless-dart) to create your functions with [serverless](https://serverless.com).
 
-## Custom deployment
+You can start your next project using the [serverless-aws-dart](https://github.com/katallaxie/serverless-aws-dart) template.
+
+```bash
+$ npx serverless install \
+  --url https://github.com/katallaxie/serverless-aws-dart \
+  --name hello
+```
+
+Every [serverless workflow command](https://www.serverless.com/framework/docs/providers/aws/guide/workflow/) should work out of the box. The template also includes an example [GitHub actions](https://github.com/features/actions) [configuration file](.github/workflows/main.yml) which can unlock a virtuous cycle of continuous integration and deployment
+( i.e all tests are run on prs and every push to master results in a deployment).
+
+### Custom deployment
 
 The deployment is a manual task right now. We have a [`example/build.sh`](https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh) script which makes the process a bit easier. There are three steps to get your code ready to be shipped.
 
