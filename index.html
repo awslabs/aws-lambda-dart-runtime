@@ -74,13 +74,14 @@
       <section class="desc markdown">
         <h1 id="dart-runtime-for-aws-lambda">Dart Runtime for AWS Lambda</h1>
 <p><img src="https://github.com/awslabs/aws-lambda-dart-runtime/workflows/Main/badge.svg?branch=master" alt="Main">
-<a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/License-Apache2-blue.svg" alt="License Apache 2"></a></p>
-<p>The package makes it easy to write AWS Lambda functions in the Dart programming language.</p>
+<a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/License-Apache2-blue.svg" alt="License Apache 2"></a></p><p align="center">
+A 🎯 <a href="https://dart.dev/">Dart</a> Runtime for ƛ <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>
+</p>
 <blockquote>
-<p>If you want to learn more about the project you can read the <a href="https://aws.amazon.com/de/blogs/opensource/introducing-a-dart-runtime-for-aws-lambda/">introduction</a>.</p>
+<p>Read <a href="https://aws.amazon.com/de/blogs/opensource/introducing-a-dart-runtime-for-aws-lambda/">Introducing a Dart runtime for AWS Lambda</a>.</p>
 </blockquote>
 <blockquote>
-<p>If you need to access AWS APIs in your Lambda function, <a href="https://pub.dev/packages?q=dependency%3Ashared_aws_api&amp;sort=popularity">please search on pub.dev</a> provided by <a href="https://www.agilord.com/">Agilord</a></p>
+<p>If you need to access AWS APIs in your Lambda function, <a href="https://pub.dev/packages?q=dependency%3Ashared_aws_api&amp;sort=popularity">please search on pub.dev</a> for packages provided by <a href="https://www.agilord.com/">Agilord</a></p>
 </blockquote>
 <h2 id="features">Features</h2>
 <ul>
@@ -94,17 +95,15 @@
 <p>this package requires Dart <code>&gt;= 2.6</code>
 currently <code>dart2native</code> only supports building for the platform it is run on, so you must either build on a <code>Linux</code> machine or use <code>docker</code></p>
 </blockquote>
-<h2 id="introduction">Introduction</h2>
+<h2 id="-introduction">🚀 Introduction</h2>
 <p><a href="https://dart.dev/">Dart</a> is an unsupported <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> runtime language. However, with a <a href="https://docs.aws.amazon.com/lambda/latest/dg/runtimes-custom.html">custom runtime</a> you can support virtually every programming language.</p>
 <p>There are two ways in which you could use <a href="https://dart.dev/">Dart</a>. You could bundle the Dart Runtime in a <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html">Lambda layer</a> and use JIT compilation within the lambda execution to run a Dart program. The other is to compile a shippable binary of the Dart program.</p>
 <p>Dart <code>&gt;= 2.6</code> introduced <code>dart2native</code>. The <a href="https://dart.dev/tools/dart2native">tool</a> uses AOT (ahead-of-time) to compile a Dart program to <a href="https://dart.dev/platforms">native x64 machine code</a>. This standalone executable is native machine code that's compiled from the specific Dart file and its dependencies, plus a small Dart runtime that handles type checking and garbage collection.</p>
 <p>We decided to use the latter approach rather then the just-in-time compilation of Dart files. The main reason for this decision is that we wanted to avoid having to ship and maintain a standalone Dart runtime version. We would eventually have to deprecate versions, or always update the version when moving forward. Furthermore, shipping a binary has the advantage of having an always runnable version of your function in addition to performance benefits.</p>
 <p>We want to highlight <a href="https://www.youtube.com/watch?v=yDplzXEdBTI">Firecracker open-source innovation</a> from re:Invent 2019 which gives you a brief overview of <a href="https://firecracker-microvm.github.io/">Firecracker</a> which is the underlying technology of AWS Lambda.</p>
-<h2 id="use">Use</h2>
-<h2 id="-serverless-framework-experimental">🧪 Serverless Framework (experimental)</h2>
-<p>Checkout <a href="https://github.com/katallaxie/serverless-dart">serverless-dart</a> to create your functions with <a href="https://serverless.com">serverless</a>.</p>
-<h2 id="custom-build">Custom build</h2>
-<pre class="language-dart"><code>dependencies:
+<h2 id="-use">📦 Use</h2>
+<p>Add the following snippet to your <a href="https://dart.dev/tools/pub/pubspec">pubspec file</a> in <code>pubspec.yaml</code>.</p>
+<pre class="language-yaml"><code class="language-yaml">dependencies:
   aws_lambda_dart_runtime: ^1.0.3+1
 </code></pre>
 <p><a href="https://awslabs.github.io/aws-lambda-dart-runtime/">Docs</a> are available. They are also accessible in the <a href="https://github.com/awslabs/aws-lambda-dart-runtime/blob/docs"><code>docs</code></a> folder.</p>
@@ -115,17 +114,32 @@ dhttpd --path docs
 <blockquote>
 <p>you can generate the docs with <code>dartdoc --output docs</code></p>
 </blockquote>
-<h2 id="future--ideas">Future &amp; Ideas</h2>
-<ul>
-<li>Automate the build process</li>
-<li>Better tracing and logging</li>
-</ul>
-<h2 id="limitations">Limitations</h2>
-<ul>
-<li>No Just-in-time (JIT) support</li>
-<li>Requires Dart <code>&gt;= 2.6</code></li>
-<li>No cross-platform compile support (see <a href="https://github.com/dart-lang/sdk/issues/28617">#28617</a>).</li>
-</ul>
+<p>Build and deploy the Dart functions by the <a href="https://serverless.com">serverless</a> framework or by custom deployment.</p>
+<h2 id="-serverless-framework-experimental">🧪 Serverless Framework (experimental)</h2>
+<p>Checkout <a href="https://github.com/katallaxie/serverless-dart">serverless-dart</a> to create your functions with <a href="https://serverless.com">serverless</a>.</p>
+<h2 id="custom-deployment">Custom deployment</h2>
+<p>The deployment is a manual task right now. We have a <a href="https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh"><code>example/build.sh</code></a> script which makes the process a bit easier. There are three steps to get your code ready to be shipped.</p>
+<ol>
+<li>Compile your Dart program with <code>dart2native main.dart -o bootstrap</code></li>
+<li>Create a <code>.zip</code> file with <code>zip lambda.zip bootstrap</code></li>
+<li>Upload the <code>lambda.zip</code> to a S3 bucket or use the <a href="https://aws.amazon.com/cli">AWS CLI</a> to upload it</li>
+</ol>
+<blockquote>
+<p>again, you have to build this on Linux, because <code>dart2native</code> does not support cross-compiling</p>
+</blockquote>
+<p>When you created your function and upload it via the the console. Please, replace <code>arn:aws:iam::xxx:xxx</code> with the role you created for your lambda.</p>
+<pre class="language-bash"><code class="language-bash">aws lambda create-function --function-name dartTest \
+  --handler hello.apigateway \
+  --zip-file fileb://./lambda.zip \
+  --runtime provided \
+  --role arn:aws:iam::xxx:xxx \
+  --environment Variables={DART_BACKTRACE=1} \
+  --tracing-config Mode=Active
+</code></pre>
+<p>Updating a function is a fairly easy task. Rebuild your <code>lambda.zip</code> package and execute the following command.</p>
+<pre class="language-bash"><code class="language-bash">aws lambda update-function-code --function-name dartTest --zip-file fileb://./lambda.zip
+
+</code></pre>
 <h2 id="events">Events</h2>
 <p>There are a number of events that come with the Dart Runtime.</p>
 <ul>
@@ -195,29 +209,12 @@ void main() async {
 }
 </code></pre>
 <p>This example registers the <code>hello.apigateway</code> handler with the function to execute for this handler. The handler function is typed to receive a <a href="https://aws.amazon.com/api-gateway">Amazon API Gateway Event</a> and it returns a response to the invoking gateway. We support many other <a href="#events">events</a>. Handler functions get a <code>Context</code> injected with the needed information about the invocation. You can also register your own custom events via <code>Runtime.registerEvent&lt;T&gt;(Handler&lt;T&gt;)</code> (see <a href="#events">events</a>).</p>
-<h3 id="deployment">Deployment</h3>
-<p>The deployment is a manual task right now. We have a <a href="https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh"><code>example/build.sh</code></a> script which makes the process a bit easier. There are three steps to get your code ready to be shipped.</p>
-<ol>
-<li>Compile your Dart program with <code>dart2native main.dart -o bootstrap</code></li>
-<li>Create a <code>.zip</code> file with <code>zip lambda.zip bootstrap</code></li>
-<li>Upload the <code>lambda.zip</code> to a S3 bucket or use the <a href="https://aws.amazon.com/cli">AWS CLI</a> to upload it</li>
-</ol>
-<blockquote>
-<p>again, you have to build this on Linux, because <code>dart2native</code> does not support cross-compiling</p>
-</blockquote>
-<p>When you created your function and upload it via the the console. Please, replace <code>arn:aws:iam::xxx:xxx</code> with the role you created for your lambda.</p>
-<pre class="language-bash"><code class="language-bash">aws lambda create-function --function-name dartTest \
-  --handler hello.apigateway \
-  --zip-file fileb://./lambda.zip \
-  --runtime provided \
-  --role arn:aws:iam::xxx:xxx \
-  --environment Variables={DART_BACKTRACE=1} \
-  --tracing-config Mode=Active
-</code></pre>
-<p>Updating a function is a fairly easy task. Rebuild your <code>lambda.zip</code> package and execute the following command.</p>
-<pre class="language-dart"><code>aws lambda update-function-code --function-name dartTest --zip-file fileb://./lambda.zip
-
-</code></pre>
+<h2 id="limitations">Limitations</h2>
+<ul>
+<li>No Just-in-time (JIT) support</li>
+<li>Requires Dart <code>&gt;= 2.6</code></li>
+<li>No cross-platform compile support (see <a href="https://github.com/dart-lang/sdk/issues/28617">#28617</a>).</li>
+</ul>
 <h2 id="development">Development</h2>
 <p>If you want to use the <a href="https://github.com/awslabs/aws-lambda-dart-runtime.git">Repository</a> directly you can clone it and overwrite the dependency in your <code>pubspec.yaml</code> as follows.</p>
 <pre class="language-yaml"><code class="language-yaml">dependency_overrides:
