@@ -74,35 +74,15 @@
       <section class="desc markdown">
         <h1 id="dart-runtime-for-aws-lambda">Dart Runtime for AWS Lambda</h1>
 <p><img src="https://github.com/awslabs/aws-lambda-dart-runtime/workflows/Main/badge.svg?branch=master" alt="Main">
-<a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/License-Apache2-blue.svg" alt="License Apache 2"></a></p>
-<h2 id="-head">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h2><p align="center">
-   A 🎯 <a href="https://dart.dev/">Dart</a> Runtime for ƛ <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>
+<a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/License-Apache2-blue.svg" alt="License Apache 2"></a></p><p align="center">
+A 🎯 <a href="https://dart.dev/">Dart</a> Runtime for ƛ <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>
 </p>
 <hr>
 <blockquote>
 <p>Read <a href="https://aws.amazon.com/de/blogs/opensource/introducing-a-dart-runtime-for-aws-lambda/">Introducing a Dart runtime for AWS Lambda</a>.</p>
 </blockquote>
-<p>=======</p><p align="center">
-A 🎯 <a href="https://dart.dev/">Dart</a> Runtime for ƛ <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>
-</p>
 <blockquote>
-<p>Read <a href="https://aws.amazon.com/de/blogs/opensource/introducing-a-dart-runtime-for-aws-lambda/">Introducing a Dart runtime for AWS Lambda</a>.</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>0762c9a... (doc) update with serverless-aws-dart template
-If you need to access AWS APIs in your Lambda function, <a href="https://pub.dev/packages?q=dependency%3Ashared_aws_api&amp;sort=popularity">please search on pub.dev</a> for packages provided by <a href="https://www.agilord.com/">Agilord</a></p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>If you need to access AWS APIs in your Lambda function, <a href="https://pub.dev/packages?q=dependency%3Ashared_aws_api&amp;sort=popularity">please search on pub.dev</a> for packages provided by <a href="https://www.agilord.com/">Agilord</a></p>
 </blockquote>
 <h2 id="features">Features</h2>
 <ul>
@@ -138,6 +118,13 @@ dhttpd --path docs
 <p>Build and deploy the Dart functions by the <a href="https://serverless.com">serverless</a> framework or by custom deployment.</p>
 <h2 id="-serverless-framework-experimental">🧪 Serverless Framework (experimental)</h2>
 <p>Checkout <a href="https://github.com/katallaxie/serverless-dart">serverless-dart</a> to create your functions with <a href="https://serverless.com">serverless</a>.</p>
+<p>You can start your next project using the <a href="https://github.com/katallaxie/serverless-aws-dart">serverless-aws-dart</a> template.</p>
+<pre class="language-bash"><code class="language-bash">$ npx serverless install \
+  --url https://github.com/katallaxie/serverless-aws-dart \
+  --name hello
+</code></pre>
+<p>Every <a href="https://www.serverless.com/framework/docs/providers/aws/guide/workflow/">serverless workflow command</a> should work out of the box. The template also includes an example <a href="https://github.com/features/actions">GitHub actions</a> <a href=".github/workflows/main.yml">configuration file</a> which can unlock a virtuous cycle of continuous integration and deployment
+( i.e all tests are run on prs and every push to master results in a deployment).</p>
 <h2 id="custom-deployment">Custom deployment</h2>
 <p>The deployment is a manual task right now. We have a <a href="https://github.com/awslabs/aws-lambda-dart-runtime/blob/master/example/build.sh"><code>example/build.sh</code></a> script which makes the process a bit easier. There are three steps to get your code ready to be shipped.</p>
 <ol>
