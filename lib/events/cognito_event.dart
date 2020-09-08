@@ -1,9 +1,10 @@
+import 'package:aws_lambda_dart_runtime/runtime/event.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'cognito_event.g.dart';
 
 @JsonSerializable()
-class AwsCognitoEvent {
+class AwsCognitoEvent extends Event {
   @JsonKey()
   final int version;
 

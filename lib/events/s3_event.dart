@@ -1,3 +1,4 @@
+import 'package:aws_lambda_dart_runtime/runtime/event.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 's3_event.g.dart';
@@ -5,8 +6,8 @@ part 's3_event.g.dart';
 /// Representing a recorded S3 Event send to the Lambda.
 /// This can be send in batches of operations.
 @JsonSerializable()
-class AwsS3Event {
-  @JsonKey(name: "Records")
+class AwsS3Event extends Event {
+  @JsonKey(name: 'Records')
   final List<AwsS3EventRecord> records;
 
   const AwsS3Event({this.records});

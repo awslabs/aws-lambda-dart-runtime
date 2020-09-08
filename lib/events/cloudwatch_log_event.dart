@@ -1,3 +1,4 @@
+import 'package:aws_lambda_dart_runtime/runtime/event.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'cloudwatch_log_event.g.dart';
@@ -10,7 +11,7 @@ part 'cloudwatch_log_event.g.dart';
 
 /// Cloudwatch Log Event ...
 @JsonSerializable()
-class AwsCloudwatchLogEvent {
+class AwsCloudwatchLogEvent extends Event {
   /// awslogs ...
   @JsonKey()
   final Map<String, dynamic> awslogs;

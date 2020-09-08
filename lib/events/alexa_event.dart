@@ -1,3 +1,4 @@
+import 'package:aws_lambda_dart_runtime/runtime/event.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'alexa_event.g.dart';
@@ -28,7 +29,7 @@ class AwsAlexaEventHeader {
 /// Event send by an Application Load Balancer to the
 /// invocation to the Lambda.
 @JsonSerializable()
-class AwsAlexaEvent {
+class AwsAlexaEvent extends Event {
   /// Meta information about the event.
   @JsonKey()
   final AwsAlexaEventHeader header;

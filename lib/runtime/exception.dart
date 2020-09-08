@@ -7,5 +7,5 @@ class RuntimeException implements Exception {
   final String cause;
 
   @override
-  String toString() => "RuntimeException: $cause";
+  String toString() => 'RuntimeException: $cause';
 }
