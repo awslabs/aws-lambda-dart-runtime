@@ -148,13 +148,11 @@ class Client {
   /// Post the invocation response to the AWS Lambda Runtime Interface.
   Future<http.Response> postInvocationResponse(
       String requestId, dynamic payload) async {
-    final body = jsonEncode(payload);
-    print(body);
     return await _client.post(
       Uri.parse(
         'http://${runtimeApi}/${runtimeApiVersion}/runtime/invocation/$requestId/response',
       ),
-      body: body,
+      body: jsonEncode(payload),
     );
   }
 
