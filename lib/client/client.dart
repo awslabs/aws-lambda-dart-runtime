@@ -2,10 +2,6 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:http/io_client.dart';
-import 'package:http_extensions/http_extensions.dart';
-import 'package:http_extensions_log/http_extensions_log.dart';
-import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
@@ -107,7 +103,7 @@ class InvocationError {
 /// It is implemented as a singleton whereby [Client.instance]
 /// always returns the already instantiated client.
 class Client {
-  http.BaseClient _client;
+  http.Client _client;
 
   static final Client _singleton = Client._internal();
 
@@ -116,19 +112,7 @@ class Client {
   }
 
   Client._internal() {
-    _client = ExtendedClient(
-      inner: IOClient(),
-      extensions: [
-        LogExtension(
-          logger: Logger('HTTP'),
-          defaultOptions: LogOptions(
-            isEnabled: true,
-            logContent: true,
-            logHeaders: true,
-          ),
-        ),
-      ],
-    );
+    _client = http.Client();
   }
 
   static const runtimeApiVersion = '2018-06-01';

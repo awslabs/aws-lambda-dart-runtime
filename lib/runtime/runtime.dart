@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart';
-import 'package:logging/logging.dart';
 
 import 'package:aws_lambda_dart_runtime/client/client.dart';
 import 'package:aws_lambda_dart_runtime/runtime/event.dart';
@@ -41,7 +40,6 @@ class _RuntimeHandler {
 /// Note: You can register an
 class Runtime {
   Client _client;
-  final Logger _logger = Logger('Runtime');
 
   static final Runtime _singleton = Runtime._internal();
   final Map<String, _RuntimeHandler> _handlers = {};
@@ -52,7 +50,6 @@ class Runtime {
 
   Runtime._internal() {
     _client = Client();
-    _logger.finest('Created Client for handler: ${Client.handlerName}');
   }
 
   /// Lists the registered handlers by name.
@@ -94,17 +91,8 @@ class Runtime {
   /// If there is an error during the execution. The execution gets caught
   /// and the error is posted via [_client.postInvocationError(err)] to the API.
   void invoke() async {
-    _logger.finest('Invoked');
     while (true) {
-      try {
-        _logger.finest('Getting next invocation');
-        _handleInvocation(await _client.getNextInvocation());
-      } on Exception catch (error, stacktrace) {
-        // inner try-catch didn't succeed posting invocation error
-        // without throwing, all hope is lost, log and crash
-        _logger.severe('Invocation handling failed', error, stacktrace);
-        rethrow;
-      }
+      await _handleInvocation(await _client.getNextInvocation());
     }
   }
 
@@ -123,7 +111,6 @@ class Runtime {
 
       await _client.postInvocationResponse(context.requestId, result);
     } catch (error, stacktrace) {
-      _logger.severe('Error in invocation', error, stacktrace);
       await _client.postInvocationError(
           nextInvocation?.requestId, InvocationError(error, stacktrace));
     }
