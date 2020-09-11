@@ -103,7 +103,7 @@ class Context {
     this.logStreamName =
         logStreamName ?? Platform.environment[_kAWSLambdaLogStreamName];
     this.requestId = requestId;
-    invokedFunctionArn = invokedFunctionArn;
+    invokedFunctionArn = invokedFunction;
     this.region = region ?? Platform.environment[_kAWSLambdaRegion];
     this.executionEnv =
         executionEnv ?? Platform.environment[_kAWSLambdaExecutionEnv];
