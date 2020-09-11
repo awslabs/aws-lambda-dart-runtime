@@ -88,7 +88,7 @@ class Runtime {
   ///
   /// If the invocation of an event was successful the function
   /// sends the [InvocationResult] via [_client.postInvocationResponse(result)] to the API.
-  /// If there is an error during the execution. The execution gets caught
+  /// If there is an error during the execution. The exception gets caught
   /// and the error is posted via [_client.postInvocationError(err)] to the API.
   void invoke() async {
     while (true) {
