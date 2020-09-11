@@ -1,3 +1,4 @@
+import 'package:aws_lambda_dart_runtime/runtime/event.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'cloudwatch_event.g.dart';
@@ -22,7 +23,7 @@ part 'cloudwatch_event.g.dart';
 /// }
 /// ```
 @JsonSerializable()
-class AwsCloudwatchEvent {
+class AwsCloudwatchEvent extends Event {
   /// Resources ...
   @JsonKey()
   final List<String> resources;
@@ -44,7 +45,7 @@ class AwsCloudwatchEvent {
   final String account;
 
   /// Data Type ...
-  @JsonKey(name: "detail-type")
+  @JsonKey(name: 'detail-type')
   final String detailType;
 
   /// Detail ...

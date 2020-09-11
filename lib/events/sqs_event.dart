@@ -1,10 +1,11 @@
+import 'package:aws_lambda_dart_runtime/runtime/event.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'sqs_event.g.dart';
 
 /// SQS Event Record that is send via [AwsSQSEvent].
 @JsonSerializable()
-class AwsSQSEventRecord {
+class AwsSQSEventRecord extends Event {
   /// Id of the SQS message.
   @JsonKey()
   final String messageId;
@@ -62,9 +63,9 @@ class AwsSQSEventRecord {
 /// Event that is send via SQS to trigger for an innovation
 /// of a Lambda.
 @JsonSerializable()
-class AwsSQSEvent {
+class AwsSQSEvent extends Event {
   /// The SQS message records that have been send with the event.
-  @JsonKey(name: "Records")
+  @JsonKey(name: 'Records')
   final List<AwsSQSEventRecord> records;
 
   factory AwsSQSEvent.fromJson(Map<String, dynamic> json) {

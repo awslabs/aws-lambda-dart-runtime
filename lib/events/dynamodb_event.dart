@@ -1,3 +1,4 @@
+import 'package:aws_lambda_dart_runtime/runtime/event.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'dynamodb_event.g.dart';
@@ -5,17 +6,17 @@ part 'dynamodb_event.g.dart';
 /// Event send by a DynamoDB stream that contains
 /// the updated records in the DynamoDB table.
 @JsonSerializable()
-class AwsDynamoDBUpdateRecord {
+class AwsDynamoDBUpdateRecord extends Event {
   /// Keys ...
-  @JsonKey(name: "Keys")
+  @JsonKey(name: 'Keys')
   final Map<String, dynamic> keys;
 
   /// New Image ...
-  @JsonKey(name: "NewImage")
+  @JsonKey(name: 'NewImage')
   final Map<String, dynamic> oldImage;
 
   /// Old Image ....
-  @JsonKey(name: "OldImage")
+  @JsonKey(name: 'OldImage')
   final Map<String, dynamic> newImage;
 
   factory AwsDynamoDBUpdateRecord.fromJson(Map<String, dynamic> json) =>
@@ -69,9 +70,9 @@ class AwsDynamoDBUpdateEventRecord {
 
 /// DynamoDB Update Event ...
 @JsonSerializable()
-class AwsDynamoDBUpdateEvent {
+class AwsDynamoDBUpdateEvent extends Event {
   /// awslogs ...
-  @JsonKey(name: "Records")
+  @JsonKey(name: 'Records')
   final List<AwsDynamoDBUpdateEventRecord> records;
 
   factory AwsDynamoDBUpdateEvent.fromJson(Map<String, dynamic> json) =>

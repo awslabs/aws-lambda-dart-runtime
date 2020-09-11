@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aws_lambda_dart_runtime/runtime/event.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'alb_event.g.dart';
@@ -7,7 +8,7 @@ part 'alb_event.g.dart';
 /// Event send by an Application Load Balancer to the
 /// invocation to the Lambda.
 @JsonSerializable()
-class AwsALBEvent {
+class AwsALBEvent extends Event {
   /// Request context in which this request is executed.
   /// For the ELB this is the ARN of the target group.
   @JsonKey()
@@ -43,14 +44,15 @@ class AwsALBEvent {
 
   Map<String, dynamic> toJson() => _$AwsALBEventToJson(this);
 
-  const AwsALBEvent(
-      {this.context,
-      this.httpMethod,
-      this.path,
-      this.headers,
-      this.queryStringParameters,
-      this.body,
-      this.isBase64Encoded});
+  const AwsALBEvent({
+    this.context,
+    this.httpMethod,
+    this.path,
+    this.headers,
+    this.queryStringParameters,
+    this.body,
+    this.isBase64Encoded,
+  });
 }
 
 /// Response for a request from an Application Load Balancer.
@@ -100,13 +102,18 @@ class AwsALBResponse {
 
   /// The Response that should be returned to the Application Load Balancer.
   /// It is constructed with some default values for the optional parameters.
-  AwsALBResponse(
-      {body, headers, isBase64Encoded, statusCode, statusDescription}) {
+  AwsALBResponse({
+    String body,
+    Map<String, String> headers,
+    bool isBase64Encoded,
+    int statusCode,
+    String statusDescription,
+  }) {
     this.body = body ?? '';
     this.isBase64Encoded = isBase64Encoded ?? false;
-    this.headers = headers ?? {"Content-Type": "text/html; charset=utf-8"};
+    this.headers = headers ?? {'Content-Type': 'text/html; charset=utf-8'};
     this.statusCode = statusCode ?? HttpStatus.ok;
-    this.statusDescription = statusDescription ?? "200 OK";
+    this.statusDescription = statusDescription ?? '200 OK';
   }
 }
 

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:convert';
 
+import 'package:aws_lambda_dart_runtime/runtime/event.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'apigateway_event.g.dart';
@@ -25,22 +26,25 @@ class AwsApiGatewayResponse {
   /// Returns the JSON representation of the response. This is called by
   /// the JSON encoder to produce the response.
   Map<String, dynamic> toJson() => {
-        'body': body,
+        if (body != null) 'body': body,
         'isBase64Encoded': isBase64Encoded,
         'statusCode': statusCode,
-        'headers': headers
+        if (headers != null) 'headers': headers
       };
 
   /// The factory creates a new [AwsApiGatewayResponse] from JSON.
   /// It optionally accepts the Base64 encoded flag and a HTTP Status Code
   /// for the response.
   factory AwsApiGatewayResponse.fromJson(Map<String, dynamic> body,
-      {bool isBase64Encoded, int statusCode, Map<String, String> headers}) {
+      {bool isBase64Encoded = false,
+      int statusCode = HttpStatus.ok,
+      Map<String, String> headers}) {
     return AwsApiGatewayResponse(
-        body: json.encode(body),
-        isBase64Encoded: isBase64Encoded,
-        headers: headers,
-        statusCode: statusCode);
+      body: json.encode(body),
+      isBase64Encoded: isBase64Encoded,
+      headers: headers,
+      statusCode: statusCode,
+    );
   }
 
   /// The Response that should be returned by the API Gateway for the
@@ -49,20 +53,20 @@ class AwsApiGatewayResponse {
   /// of the response is.
   AwsApiGatewayResponse({
     String body,
-    bool isBase64Encoded,
+    bool isBase64Encoded = false,
     Map<String, String> headers,
     int statusCode,
   }) {
-    this.body = body ?? '';
+    this.body = body;
     this.isBase64Encoded = isBase64Encoded ?? false;
-    this.headers = headers ?? {"Content-Type": "application/json"};
+    this.headers = headers ?? {'Content-Type': 'application/json'};
     this.statusCode = statusCode ?? HttpStatus.ok;
   }
 }
 
 /// API Gateway Event ...
 @JsonSerializable()
-class AwsApiGatewayEvent {
+class AwsApiGatewayEvent extends Event {
   /// URL Path ...
   @JsonKey()
   final String path;
@@ -118,58 +122,58 @@ class AwsApiGatewayEvent {
 /// API Gateway Event Headers ...
 @JsonSerializable()
 class AwsApiGatewayEventHeaders {
-  @JsonKey(name: "Accept")
+  @JsonKey(name: 'Accept')
   final String accept;
 
-  @JsonKey(name: "Accept-Encoding")
+  @JsonKey(name: 'Accept-Encoding')
   final String acceptEncoding;
 
-  @JsonKey(name: "CloudFront-Forwarded-Proto")
+  @JsonKey(name: 'CloudFront-Forwarded-Proto')
   final String cloudfrontForwardProto;
 
-  @JsonKey(name: "CloudFront-Is-Desktop-Viewer")
+  @JsonKey(name: 'CloudFront-Is-Desktop-Viewer')
   final String cloudfrontIsDesktopViewer;
 
-  @JsonKey(name: "CloudFront-Is-Mobile-Viewer")
+  @JsonKey(name: 'CloudFront-Is-Mobile-Viewer')
   final String cloudfrontIsMobileViewer;
 
-  @JsonKey(name: "CloudFront-Is-SmartTV-Viewer")
+  @JsonKey(name: 'CloudFront-Is-SmartTV-Viewer')
   final String cloudfrontIsSmartTvViewer;
 
-  @JsonKey(name: "CloudFront-Is-Tablet-Viewer")
+  @JsonKey(name: 'CloudFront-Is-Tablet-Viewer')
   final String cloudfrontIsTabletViewer;
 
-  @JsonKey(name: "CloudFront-Viewer-Country")
+  @JsonKey(name: 'CloudFront-Viewer-Country')
   final String cloudfrontViewerCountry;
 
-  @JsonKey(name: "Host")
+  @JsonKey(name: 'Host')
   final String host;
 
-  @JsonKey(name: "Upgrade-Insecure-Requests")
+  @JsonKey(name: 'Upgrade-Insecure-Requests')
   final String upgradeInsecureRequests;
 
-  @JsonKey(name: "User-Agent")
+  @JsonKey(name: 'User-Agent')
   final String userAgent;
 
-  @JsonKey(name: "Via")
+  @JsonKey(name: 'Via')
   final String via;
 
-  @JsonKey(name: "X-Amz-Cf-Id")
+  @JsonKey(name: 'X-Amz-Cf-Id')
   final String xAmzCfId;
 
-  @JsonKey(name: "X-Forwarded-For")
+  @JsonKey(name: 'X-Forwarded-For')
   final String xForwardedFor;
 
-  @JsonKey(name: "X-Forwarded-Port")
+  @JsonKey(name: 'X-Forwarded-Port')
   final String xForwardedPort;
 
-  @JsonKey(name: "X-Forwarded-Proto")
+  @JsonKey(name: 'X-Forwarded-Proto')
   final String xForwardedProto;
 
-  @JsonKey(name: "Cache-Control")
+  @JsonKey(name: 'Cache-Control')
   final String cacheControl;
 
-  @JsonKey(name: "X-Amzn-Trace-Id")
+  @JsonKey(name: 'X-Amzn-Trace-Id')
   final String xAmznTraceId;
 
   @JsonKey(ignore: true)
