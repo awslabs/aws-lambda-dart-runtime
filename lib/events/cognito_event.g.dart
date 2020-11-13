@@ -8,7 +8,7 @@ part of 'cognito_event.dart';
 
 AwsCognitoEvent _$AwsCognitoEventFromJson(Map<String, dynamic> json) {
   return AwsCognitoEvent(
-    version: json['version'] as int,
+    version: json['version'] as String,
     triggerSource: json['triggerSource'] as String,
     region: json['region'] as String,
     userPoolId: json['userPoolId'] as String,

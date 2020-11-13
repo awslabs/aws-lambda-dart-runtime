@@ -5,7 +5,7 @@ part 'cognito_event.g.dart';
 @JsonSerializable()
 class AwsCognitoEvent {
   @JsonKey()
-  final int version;
+  final String version;
 
   @JsonKey()
   final String triggerSource;

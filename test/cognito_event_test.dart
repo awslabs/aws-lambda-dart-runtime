@@ -14,7 +14,7 @@ void main() {
     test("json got parsed and creates an event", () async {
       final event = AwsCognitoEvent.fromJson(json);
 
-      expect(event.version, equals(1));
+      expect(event.version, equals("1"));
       expect(event.userPoolId, equals("1234567"));
       expect(event.userName, equals("foo"));
       expect(event.response.smsMessage, equals("foo"));
