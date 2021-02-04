@@ -104,8 +104,9 @@ class Runtime<T> {
         final context = Context.fromNextInvocation(nextInvocation);
 
         final func = _handlers[context.handler];
-        if(func == null) {
-          throw RuntimeException('No handler with name "${context.handler}" registered in runtime!');
+        if (func == null) {
+          throw RuntimeException(
+              'No handler with name "${context.handler}" registered in runtime!');
         }
         final event =
             Event.fromHandler(func.type, await nextInvocation.response);
@@ -113,8 +114,10 @@ class Runtime<T> {
 
         await _client.postInvocationResponse(result);
       } on Exception catch (error, stacktrace) {
-        await _client.postInvocationError(
-            nextInvocation.requestId, InvocationError(error, stacktrace));
+        if (nextInvocation != null) {
+          await _client.postInvocationError(
+              nextInvocation.requestId, InvocationError(error, stacktrace));
+        }
       }
 
       nextInvocation = null;
