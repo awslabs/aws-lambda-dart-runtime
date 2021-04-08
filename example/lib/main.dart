@@ -1,8 +1,9 @@
 import 'package:aws_lambda_dart_runtime/aws_lambda_dart_runtime.dart';
+import 'package:aws_lambda_dart_runtime/runtime/context.dart';
 
 void main() async {
   /// This demo's handling an API Gateway request.
-  final helloApiGateway = (context, event) async {
+  final helloApiGateway = (Context context, AwsApiGatewayEvent event) async {
     final response = {'message': 'hello ${context.requestId}'};
 
     /// it returns an response to the gateway

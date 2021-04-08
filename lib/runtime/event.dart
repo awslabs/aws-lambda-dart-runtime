@@ -20,24 +20,25 @@ import '../events/kinesis_data_stream_event.dart';
 abstract class Event {
   const Event();
   static final Map<Type, Function(Map<String, dynamic>)> _registry = {
-    AwsCognitoEvent: (Map<String, dynamic> json) =>
-        AwsCognitoEvent.fromJson(json),
-    AwsS3Event: (Map<String, dynamic> json) => AwsS3Event.fromJson(json),
-    AwsApiGatewayEvent: (Map<String, dynamic> json) =>
-        AwsApiGatewayEvent.fromJson(json),
-    AwsAppSyncEvent: (Map<String, dynamic> json) =>
-        AwsAppSyncEvent.fromJson(json),
-    AwsALBEvent: (Map<String, dynamic> json) => AwsALBEvent.fromJson(json),
-    AwsAlexaEvent: (Map<String, dynamic> json) => AwsAlexaEvent.fromJson(json),
-    AwsSQSEvent: (Map<String, dynamic> json) => AwsSQSEvent.fromJson(json),
-    AwsCloudwatchEvent: (Map<String, dynamic> json) =>
-        AwsCloudwatchEvent.fromJson(json),
-    AwsCloudwatchLogEvent: (Map<String, dynamic> json) =>
-        AwsCloudwatchLogEvent.fromJson(json),
-    AwsDynamoDBUpdateEvent: (Map<String, dynamic> json) =>
-        AwsDynamoDBUpdateEvent.fromJson(json),
-    AwsKinesisDataStreamEvent: (Map<String, dynamic> json) =>
-        AwsKinesisDataStreamEvent.fromJson(json)
+    AwsCognitoEvent: (Map<String, dynamic>? json) =>
+        AwsCognitoEvent.fromJson(json!),
+    AwsS3Event: (Map<String, dynamic>? json) => AwsS3Event.fromJson(json!),
+    AwsApiGatewayEvent: (Map<String, dynamic>? json) =>
+        AwsApiGatewayEvent.fromJson(json!),
+    AwsAppSyncEvent: (Map<String, dynamic>? json) =>
+        AwsAppSyncEvent.fromJson(json!),
+    AwsALBEvent: (Map<String, dynamic>? json) => AwsALBEvent.fromJson(json!),
+    AwsAlexaEvent: (Map<String, dynamic>? json) =>
+        AwsAlexaEvent.fromJson(json!),
+    AwsSQSEvent: (Map<String, dynamic>? json) => AwsSQSEvent.fromJson(json!),
+    AwsCloudwatchEvent: (Map<String, dynamic>? json) =>
+        AwsCloudwatchEvent.fromJson(json!),
+    AwsCloudwatchLogEvent: (Map<String, dynamic>? json) =>
+        AwsCloudwatchLogEvent.fromJson(json!),
+    AwsDynamoDBUpdateEvent: (Map<String, dynamic>? json) =>
+        AwsDynamoDBUpdateEvent.fromJson(json!),
+    AwsKinesisDataStreamEvent: (Map<String, dynamic>? json) =>
+        AwsKinesisDataStreamEvent.fromJson(json!)
   };
 
   /// Checks if a type of event is already registered.
@@ -47,8 +48,8 @@ abstract class Event {
 
   /// Returs the value of a registered event. It is [null]
   /// if no such event has been registered.
-  static T Function(Map<String, dynamic>) value<T extends Event>() =>
-      Event._registry[T] as T Function(Map<String, dynamic>);
+  static T Function(Map<String, dynamic>)? value<T extends Event>() =>
+      Event._registry[T] as T Function(Map<String, dynamic>)?;
 
   /// Registers an event.
   static void registerEvent<T>(T Function(Map<String, dynamic>) func) =>
@@ -59,5 +60,5 @@ abstract class Event {
 
   /// Creates a new event from a handler type with the [NextInvocation.response].
   static dynamic fromHandler<T>(Type type, Map<String, dynamic> json) =>
-      _registry[type](json);
+      _registry[type]!(json);
 }

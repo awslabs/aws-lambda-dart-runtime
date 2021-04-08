@@ -8,9 +8,9 @@ part of 'appsync_event.dart';
 
 AwsAppSyncEvent _$AwsAppSyncEventFromJson(Map<String, dynamic> json) {
   return AwsAppSyncEvent(
-    version: json['version'] as String,
-    operation: json['operation'] as String,
-    payload: json['payload'] as String,
+    version: json['version'] as String?,
+    operation: json['operation'] as String?,
+    payload: json['payload'] as String?,
   );
 }
 

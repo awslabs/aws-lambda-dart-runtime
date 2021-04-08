@@ -6,28 +6,28 @@ part 'cognito_event.g.dart';
 @JsonSerializable()
 class AwsCognitoEvent extends Event {
   @JsonKey()
-  final int version;
+  final int? version;
 
   @JsonKey()
-  final String triggerSource;
+  final String? triggerSource;
 
   @JsonKey()
-  final String region;
+  final String? region;
 
   @JsonKey()
-  final String userPoolId;
+  final String? userPoolId;
 
   @JsonKey()
-  final String userName;
+  final String? userName;
 
   @JsonKey()
-  final Map<String, String> callerContext;
+  final Map<String, String>? callerContext;
 
   @JsonKey()
-  final AwsCognitoRequest request;
+  final AwsCognitoRequest? request;
 
   @JsonKey()
-  final AwsCognitoResponse response;
+  final AwsCognitoResponse? response;
 
   const AwsCognitoEvent(
       {this.version,
@@ -48,25 +48,25 @@ class AwsCognitoEvent extends Event {
 @JsonSerializable()
 class AwsCognitoRequest {
   @JsonKey()
-  final Map<String, dynamic> userAttributes;
+  final Map<String, dynamic>? userAttributes;
 
   @JsonKey()
-  final Map<String, String> validationData;
+  final Map<String, String>? validationData;
 
   @JsonKey()
-  final Map<String, String> clientMetadata;
+  final Map<String, String>? clientMetadata;
 
   @JsonKey()
-  final bool newDeviceUsed;
+  final bool? newDeviceUsed;
 
   @JsonKey()
-  final AwsGroupConfiguration groupConfiguration;
+  final AwsGroupConfiguration? groupConfiguration;
 
   @JsonKey()
-  final String password;
+  final String? password;
 
   @JsonKey()
-  final String codeParameter;
+  final String? codeParameter;
 
   const AwsCognitoRequest(
       {this.userAttributes,
@@ -86,40 +86,40 @@ class AwsCognitoRequest {
 @JsonSerializable()
 class AwsCognitoResponse {
   @JsonKey()
-  final bool autoConfirmUser;
+  final bool? autoConfirmUser;
 
   @JsonKey()
-  final bool autoVerifyPhone;
+  final bool? autoVerifyPhone;
 
   @JsonKey()
-  final bool autoVerifyEmail;
+  final bool? autoVerifyEmail;
 
   @JsonKey()
-  final AwsClaimOverrideDetails claimsOverrideDetails;
+  final AwsClaimOverrideDetails? claimsOverrideDetails;
 
   @JsonKey()
-  final Map<String, String> userAttributes;
+  final Map<String, String>? userAttributes;
 
   @JsonKey()
-  final String finalUserStatus;
+  final String? finalUserStatus;
 
   @JsonKey()
-  final String messageAction;
+  final String? messageAction;
 
   @JsonKey()
-  final List<String> desiredDeliveryMediums;
+  final List<String>? desiredDeliveryMediums;
 
   @JsonKey()
-  final bool forceAliasCreation;
+  final bool? forceAliasCreation;
 
   @JsonKey()
-  final String smsMessage;
+  final String? smsMessage;
 
   @JsonKey()
-  final String emailMessage;
+  final String? emailMessage;
 
   @JsonKey()
-  final String emailSubject;
+  final String? emailSubject;
 
   const AwsCognitoResponse(
       {this.autoConfirmUser,
@@ -144,16 +144,16 @@ class AwsCognitoResponse {
 @JsonSerializable()
 class AwsGroupConfiguration {
   @JsonKey()
-  final List<String> groupsToOverride;
+  final List<String>? groupsToOverride;
 
   @JsonKey()
-  final List<String> iamRolesToOverride;
+  final List<String>? iamRolesToOverride;
 
   @JsonKey()
-  final String preferredRole;
+  final String? preferredRole;
 
   @JsonKey()
-  final Map<String, String> clientMetadata;
+  final Map<String, String>? clientMetadata;
 
   const AwsGroupConfiguration(
       {this.groupsToOverride,
@@ -170,13 +170,13 @@ class AwsGroupConfiguration {
 @JsonSerializable()
 class AwsClaimOverrideDetails {
   @JsonKey()
-  final Map<String, String> claimsToAddOrOverride;
+  final Map<String, String>? claimsToAddOrOverride;
 
   @JsonKey()
-  final List<String> claimsToSuppress;
+  final List<String>? claimsToSuppress;
 
   @JsonKey()
-  final AwsGroupConfiguration groupOverrideDetails;
+  final AwsGroupConfiguration? groupOverrideDetails;
 
   const AwsClaimOverrideDetails(
       {this.claimsToAddOrOverride,

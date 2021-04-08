@@ -7,12 +7,12 @@ import 'package:test/test.dart';
 final file = 'data/cloudwatch_log_event.json';
 
 final String contents = File(file).readAsStringSync();
-final json = jsonDecode(contents) as Map<String, dynamic>;
+final json = jsonDecode(contents) as Map<String, dynamic>?;
 
 void main() {
   group('cloudwatch_log_default', () {
     test('json got parsed and creates an event', () async {
-      final event = AwsCloudwatchLogEvent.fromJson(json);
+      final event = AwsCloudwatchLogEvent.fromJson(json!);
 
       expect(
           event.awslogs,

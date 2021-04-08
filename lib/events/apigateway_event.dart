@@ -12,16 +12,16 @@ part 'apigateway_event.g.dart';
 /// Furthermore it indicates if the [body] is Base64 encoded or not.
 class AwsApiGatewayResponse {
   /// The body of the HTTP Response send from the API Gateway to the client.
-  String body;
+  String? body;
 
   /// Indicates if the [body] is Base64 encoded or not. By default is `false`.
-  bool isBase64Encoded;
+  bool? isBase64Encoded;
 
   // HTTP Status Code of the response of the API Gateway to the client.
-  int statusCode;
+  int? statusCode;
 
   /// The HTTP headers that should be send with the response to the client.
-  Map<String, String> headers;
+  Map<String, String>? headers;
 
   /// Returns the JSON representation of the response. This is called by
   /// the JSON encoder to produce the response.
@@ -35,10 +35,12 @@ class AwsApiGatewayResponse {
   /// The factory creates a new [AwsApiGatewayResponse] from JSON.
   /// It optionally accepts the Base64 encoded flag and a HTTP Status Code
   /// for the response.
-  factory AwsApiGatewayResponse.fromJson(Map<String, dynamic> body,
-      {bool isBase64Encoded = false,
-      int statusCode = HttpStatus.ok,
-      Map<String, String> headers}) {
+  factory AwsApiGatewayResponse.fromJson(
+    Map<String, dynamic> body, {
+    bool isBase64Encoded = false,
+    int statusCode = HttpStatus.ok,
+    Map<String, String>? headers,
+  }) {
     return AwsApiGatewayResponse(
       body: json.encode(body),
       isBase64Encoded: isBase64Encoded,
@@ -52,13 +54,13 @@ class AwsApiGatewayResponse {
   /// But also it signals if the [body] is Base64 encoded and what the HTTP Status Code
   /// of the response is.
   AwsApiGatewayResponse({
-    String body,
+    String? body,
     bool isBase64Encoded = false,
-    Map<String, String> headers,
-    int statusCode,
+    Map<String, String>? headers,
+    int? statusCode,
   }) {
     this.body = body;
-    this.isBase64Encoded = isBase64Encoded ?? false;
+    this.isBase64Encoded = isBase64Encoded;
     this.headers = headers ?? {'Content-Type': 'application/json'};
     this.statusCode = statusCode ?? HttpStatus.ok;
   }
@@ -69,38 +71,38 @@ class AwsApiGatewayResponse {
 class AwsApiGatewayEvent extends Event {
   /// URL Path ...
   @JsonKey()
-  final String path;
+  final String? path;
 
   /// Resource ...
   @JsonKey()
-  final String resource;
+  final String? resource;
 
   /// HTTP Method ...
   @JsonKey()
-  final String httpMethod;
+  final String? httpMethod;
 
   /// Body ...
   @JsonKey()
-  final String body;
+  final String? body;
 
   /// Headers ...
   @JsonKey()
-  final AwsApiGatewayEventHeaders headers;
+  final AwsApiGatewayEventHeaders? headers;
 
   /// Path Parameters ...
   @JsonKey()
-  final Map<String, dynamic> pathParameters;
+  final Map<String, dynamic>? pathParameters;
 
   /// Query String Parameters ...
   @JsonKey()
-  final Map<String, dynamic> queryStringParameters;
+  final Map<String, dynamic>? queryStringParameters;
 
   /// Stage Variables ...
   @JsonKey()
-  final Map<String, dynamic> stageVariables;
+  final Map<String, dynamic>? stageVariables;
 
   /// Request Context ...
-  final AwsApiGatewayEventRequestContext requestContext;
+  final AwsApiGatewayEventRequestContext? requestContext;
 
   factory AwsApiGatewayEvent.fromJson(Map<String, dynamic> json) =>
       _$AwsApiGatewayEventFromJson(json);
@@ -123,61 +125,61 @@ class AwsApiGatewayEvent extends Event {
 @JsonSerializable()
 class AwsApiGatewayEventHeaders {
   @JsonKey(name: 'Accept')
-  final String accept;
+  final String? accept;
 
   @JsonKey(name: 'Accept-Encoding')
-  final String acceptEncoding;
+  final String? acceptEncoding;
 
   @JsonKey(name: 'CloudFront-Forwarded-Proto')
-  final String cloudfrontForwardProto;
+  final String? cloudfrontForwardProto;
 
   @JsonKey(name: 'CloudFront-Is-Desktop-Viewer')
-  final String cloudfrontIsDesktopViewer;
+  final String? cloudfrontIsDesktopViewer;
 
   @JsonKey(name: 'CloudFront-Is-Mobile-Viewer')
-  final String cloudfrontIsMobileViewer;
+  final String? cloudfrontIsMobileViewer;
 
   @JsonKey(name: 'CloudFront-Is-SmartTV-Viewer')
-  final String cloudfrontIsSmartTvViewer;
+  final String? cloudfrontIsSmartTvViewer;
 
   @JsonKey(name: 'CloudFront-Is-Tablet-Viewer')
-  final String cloudfrontIsTabletViewer;
+  final String? cloudfrontIsTabletViewer;
 
   @JsonKey(name: 'CloudFront-Viewer-Country')
-  final String cloudfrontViewerCountry;
+  final String? cloudfrontViewerCountry;
 
   @JsonKey(name: 'Host')
-  final String host;
+  final String? host;
 
   @JsonKey(name: 'Upgrade-Insecure-Requests')
-  final String upgradeInsecureRequests;
+  final String? upgradeInsecureRequests;
 
   @JsonKey(name: 'User-Agent')
-  final String userAgent;
+  final String? userAgent;
 
   @JsonKey(name: 'Via')
-  final String via;
+  final String? via;
 
   @JsonKey(name: 'X-Amz-Cf-Id')
-  final String xAmzCfId;
+  final String? xAmzCfId;
 
   @JsonKey(name: 'X-Forwarded-For')
-  final String xForwardedFor;
+  final String? xForwardedFor;
 
   @JsonKey(name: 'X-Forwarded-Port')
-  final String xForwardedPort;
+  final String? xForwardedPort;
 
   @JsonKey(name: 'X-Forwarded-Proto')
-  final String xForwardedProto;
+  final String? xForwardedProto;
 
   @JsonKey(name: 'Cache-Control')
-  final String cacheControl;
+  final String? cacheControl;
 
   @JsonKey(name: 'X-Amzn-Trace-Id')
-  final String xAmznTraceId;
+  final String? xAmznTraceId;
 
   @JsonKey(ignore: true)
-  Map<String, dynamic> raw;
+  late Map<String, dynamic> raw;
 
   factory AwsApiGatewayEventHeaders.fromJson(Map<String, dynamic> json) {
     final event = _$AwsApiGatewayEventHeadersFromJson(json);
@@ -213,25 +215,25 @@ class AwsApiGatewayEventHeaders {
 @JsonSerializable()
 class AwsApiGatewayEventRequestContext {
   @JsonKey()
-  final String accountId;
+  final String? accountId;
 
   @JsonKey()
-  final String resourceId;
+  final String? resourceId;
 
   @JsonKey()
-  final String stage;
+  final String? stage;
 
   @JsonKey()
-  final String requestId;
+  final String? requestId;
 
   @JsonKey()
-  final String resourcePath;
+  final String? resourcePath;
 
   @JsonKey()
-  final String httpMethod;
+  final String? httpMethod;
 
   @JsonKey()
-  final String apiId;
+  final String? apiId;
 
   factory AwsApiGatewayEventRequestContext.fromJson(
           Map<String, dynamic> json) =>
@@ -254,37 +256,37 @@ class AwsApiGatewayEventRequestContext {
 @JsonSerializable()
 class AwsApiGatewayEventRequestContextIdentity {
   @JsonKey()
-  final String cognitoIdentityPoolId;
+  final String? cognitoIdentityPoolId;
 
   @JsonKey()
-  final String accountId;
+  final String? accountId;
 
   @JsonKey()
-  final String cognitoIdentityId;
+  final String? cognitoIdentityId;
 
   @JsonKey()
-  final String caller;
+  final String? caller;
 
   @JsonKey()
-  final String apiKey;
+  final String? apiKey;
 
   @JsonKey()
-  final String sourceIp;
+  final String? sourceIp;
 
   @JsonKey()
-  final String cognitoAuthenticationType;
+  final String? cognitoAuthenticationType;
 
   @JsonKey()
-  final String cognitoAuthenticationProvider;
+  final String? cognitoAuthenticationProvider;
 
   @JsonKey()
-  final String userArn;
+  final String? userArn;
 
   @JsonKey()
-  final String userAgent;
+  final String? userAgent;
 
   @JsonKey()
-  final String user;
+  final String? user;
 
   factory AwsApiGatewayEventRequestContextIdentity.fromJson(
           Map<String, dynamic> json) =>

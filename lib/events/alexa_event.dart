@@ -8,15 +8,15 @@ part 'alexa_event.g.dart';
 class AwsAlexaEventHeader {
   /// Version of the send payload.
   @JsonKey()
-  final String payloadVersion;
+  final String? payloadVersion;
 
   /// Namespace of the event.
   @JsonKey()
-  final String namespace;
+  final String? namespace;
 
   /// Name of the event
   @JsonKey()
-  final String name;
+  final String? name;
 
   factory AwsAlexaEventHeader.fromJson(Map<String, dynamic> json) =>
       _$AwsAlexaEventHeaderFromJson(json);
@@ -32,11 +32,11 @@ class AwsAlexaEventHeader {
 class AwsAlexaEvent extends Event {
   /// Meta information about the event.
   @JsonKey()
-  final AwsAlexaEventHeader header;
+  final AwsAlexaEventHeader? header;
 
   /// Payload of the event send by Alexa.
   @JsonKey()
-  final Map<String, dynamic> payload;
+  final Map<String, dynamic>? payload;
 
   factory AwsAlexaEvent.fromJson(Map<String, dynamic> json) =>
       _$AwsAlexaEventFromJson(json);

@@ -14,7 +14,7 @@ part 'cloudwatch_log_event.g.dart';
 class AwsCloudwatchLogEvent extends Event {
   /// awslogs ...
   @JsonKey()
-  final Map<String, dynamic> awslogs;
+  final Map<String, dynamic>? awslogs;
 
   factory AwsCloudwatchLogEvent.fromJson(Map<String, dynamic> json) =>
       _$AwsCloudwatchLogEventFromJson(json);

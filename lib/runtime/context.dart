@@ -1,5 +1,4 @@
 import 'dart:io' show Platform;
-import 'package:meta/meta.dart';
 
 import '../client/client.dart';
 
@@ -28,67 +27,66 @@ class Context {
   /// from the Lambda Runtime Interface for the next [Handler<T>] invocation.
   static Context fromNextInvocation(NextInvocation nextInvocation) {
     return Context(
-      handler: Client.handlerName,
+      handler: Client.handlerName!,
       requestId: nextInvocation.requestId,
       invokedFunction: nextInvocation.invokedFunctionArn,
     );
   }
 
   /// Handler that is used for the invocation of the function
-  String handler;
+  String? handler;
 
   /// Name of the function that is invoked.
-  String functionName;
+  String? functionName;
 
   /// Version of the function that is invoked.
-  String functionVersion;
+  String? functionVersion;
 
   /// Memory sized that is allocated to execution of the function.
-  String functionMemorySize;
+  String? functionMemorySize;
 
   /// Cloudwatch LogGroup that is associated with the Lambda.
-  String logGroupName;
+  String? logGroupName;
 
   /// Cloudwach LogStream that is associated with the Lambda.
-  String logStreamName;
+  String? logStreamName;
 
   /// Region that this function exists in.
-  String region;
+  String? region;
 
   /// The execution environment of the function.
-  String executionEnv;
+  String? executionEnv;
 
   /// Access key that is acquired via STS.
-  String accessKey;
+  String? accessKey;
 
   /// Secret access key that is acquired via STS.
-  String secretAccessKey;
+  String? secretAccessKey;
 
   /// The session token from STS.
-  String sessionToken;
+  String? sessionToken;
 
   /// Id of the request.
   /// You can use this to track the request for the invocation.
-  String requestId;
+  String? requestId;
 
   /// The ARN to identify the function.
-  String invokedFunctionArn;
+  String? invokedFunctionArn;
 
   Context({
-    @required String handler,
-    String functionName,
-    String functionMemorySize,
-    String logGroupName,
-    String logStreamName,
-    @required String requestId,
-    String invokedFunction,
-    String region,
-    String executionEnv,
-    String accessKey,
-    String secretAccessKey,
-    String sessionToken,
+    String? handler,
+    String? functionName,
+    String? functionMemorySize,
+    String? logGroupName,
+    String? logStreamName,
+    required String requestId,
+    String? invokedFunction,
+    String? region,
+    String? executionEnv,
+    String? accessKey,
+    String? secretAccessKey,
+    String? sessionToken,
   }) {
-    assert(requestId != null);
     assert(handler != null);
 
     this.handler = handler ?? Platform.environment[_kAWSLambdaHandler];
@@ -116,26 +114,26 @@ class Context {
 
   /// Allows to copy a created [Context] over with some new settings.
   Context copyWith({
-    String handler,
-    String functionName,
-    String functionMemorySize,
-    String logGroupName,
-    String logStreamName,
-    String requestId,
-    String invokedFunction,
-    String region,
-    String executionEnv,
-    String accessKey,
-    String secretAccessKey,
-    String sessionToken,
+    String? handler,
+    String? functionName,
+    String? functionMemorySize,
+    String? logGroupName,
+    String? logStreamName,
+    String? requestId,
+    String? invokedFunction,
+    String? region,
+    String? executionEnv,
+    String? accessKey,
+    String? secretAccessKey,
+    String? sessionToken,
   }) {
     return Context(
-        handler: handler ?? this.handler,
+        handler: handler ?? this.handler!,
         functionName: functionName ?? this.functionName,
         functionMemorySize: functionMemorySize ?? this.functionMemorySize,
         logGroupName: logGroupName ?? this.logGroupName,
         logStreamName: logStreamName ?? this.logStreamName,
-        requestId: requestId ?? this.requestId,
+        requestId: requestId ?? this.requestId!,
         invokedFunction: invokedFunction ?? invokedFunctionArn,
         region: region ?? this.region,
         executionEnv: executionEnv ?? this.executionEnv,

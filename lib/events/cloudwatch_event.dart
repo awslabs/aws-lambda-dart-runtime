@@ -26,35 +26,35 @@ part 'cloudwatch_event.g.dart';
 class AwsCloudwatchEvent extends Event {
   /// Resources ...
   @JsonKey()
-  final List<String> resources;
+  final List<String>? resources;
 
   /// Region ...
   @JsonKey()
-  final String region;
+  final String? region;
 
   /// Id ...
   @JsonKey()
-  final String id;
+  final String? id;
 
   /// Source ...
   @JsonKey()
-  final String source;
+  final String? source;
 
   /// Account ...
   @JsonKey()
-  final String account;
+  final String? account;
 
   /// Data Type ...
   @JsonKey(name: 'detail-type')
-  final String detailType;
+  final String? detailType;
 
   /// Detail ...
   @JsonKey()
-  final Map<String, dynamic> detail;
+  final Map<String, dynamic>? detail;
 
   /// Time ...
   @JsonKey()
-  final DateTime time;
+  final DateTime? time;
 
   factory AwsCloudwatchEvent.fromJson(Map<String, dynamic> json) =>
       _$AwsCloudwatchEventFromJson(json);

@@ -7,14 +7,14 @@ import 'package:test/test.dart';
 final file = 'data/dynamodb_event.json';
 
 final String contents = File(file).readAsStringSync();
-final json = jsonDecode(contents) as Map<String, dynamic>;
+final json = jsonDecode(contents) as Map<String, dynamic>?;
 
 void main() {
   group('dynamodb_default', () {
     test('json got parsed and creates an event', () async {
-      final event = AwsDynamoDBUpdateEvent.fromJson(json);
+      final event = AwsDynamoDBUpdateEvent.fromJson(json!);
 
-      expect(event.records.length, equals(1));
+      expect(event.records!.length, equals(1));
     });
   });
 }

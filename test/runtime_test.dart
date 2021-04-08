@@ -9,16 +9,16 @@ void main() {
     });
 
     test('instance is same across invocation', () async {
-      final runtime = await Runtime();
+      final runtime = Runtime();
 
-      expect(runtime, await Runtime());
+      expect(runtime, Runtime());
     });
 
     test('successfully add a handler to runtime', () async {
-      final runtime = await Runtime();
+      final runtime = Runtime();
 
       final Handler testHandler = (context, event) async {
-        return null;
+        return true;
       };
 
       final addHandler = runtime.registerHandler('test.handler', testHandler);
@@ -28,10 +28,10 @@ void main() {
     });
 
     test('successfully deregister a handler to runtime', () async {
-      final runtime = await Runtime();
+      final runtime = Runtime();
 
       final testHandler = (context, event) async {
-        return null;
+        return true;
       };
 
       runtime.registerHandler('test.handler', testHandler);

@@ -16,9 +16,7 @@ class _RuntimeHandler {
   final Type type;
   final dynamic handler;
 
-  const _RuntimeHandler(this.type, this.handler)
-      : assert(type != null),
-        assert(handler != null);
+  const _RuntimeHandler(this.type, this.handler) : assert(handler != null);
 }
 
 /// A Runtime manages the interface to the Lambda API.
@@ -39,7 +37,7 @@ class _RuntimeHandler {
 ///
 /// Note: You can register an
 class Runtime {
-  Client _client;
+  late Client _client;
 
   static final Runtime _singleton = Runtime._internal();
   final Map<String, _RuntimeHandler> _handlers = {};
@@ -70,8 +68,8 @@ class Runtime {
   }
 
   /// Unregister a handler function [Handler] with [name].
-  Handler deregisterHandler(String name) =>
-      _handlers.remove(name).handler as Handler;
+  Handler? deregisterHandler(String name) =>
+      _handlers.remove(name)?.handler as Handler?;
 
   /// Register an new event to be ingested by a handler.
   /// The type should reflect your type in your handler definition [Handler<T>].
@@ -96,7 +94,7 @@ class Runtime {
     }
   }
 
-  void _handleInvocation(NextInvocation nextInvocation) async {
+  Future<void> _handleInvocation(NextInvocation nextInvocation) async {
     try {
       // creating the new context
       final context = Context.fromNextInvocation(nextInvocation);
@@ -106,13 +104,13 @@ class Runtime {
         throw RuntimeException(
             'No handler with name "${context.handler}" registered in runtime!');
       }
-      final event = Event.fromHandler(func.type, await nextInvocation.response);
+      final event = Event.fromHandler(func.type, nextInvocation.response);
       final result = await func.handler(context, event);
 
       await _client.postInvocationResponse(context.requestId, result);
     } catch (error, stacktrace) {
       await _client.postInvocationError(
-          nextInvocation?.requestId, InvocationError(error, stacktrace));
+          nextInvocation.requestId, InvocationError(error, stacktrace));
     }
   }
 }

@@ -8,39 +8,39 @@ part 'sqs_event.g.dart';
 class AwsSQSEventRecord extends Event {
   /// Id of the SQS message.
   @JsonKey()
-  final String messageId;
+  final String? messageId;
 
   /// Name of the receipt handle.
   @JsonKey()
-  final String receiptHandle;
+  final String? receiptHandle;
 
   /// Body of the message
   @JsonKey()
-  final String body;
+  final String? body;
 
   /// Attributes that are send with the event.
   @JsonKey()
-  final Map<String, dynamic> attributes;
+  final Map<String, dynamic>? attributes;
 
   /// Message attributes that are send with the event.
   @JsonKey()
-  final Map<String, dynamic> messageAttributes;
+  final Map<String, dynamic>? messageAttributes;
 
   /// The md5 hash of the message body.
   @JsonKey()
-  final String md5OfBody;
+  final String? md5OfBody;
 
   /// Source of the Event.
   @JsonKey()
-  final String eventSource;
+  final String? eventSource;
 
   /// Source of the Event ARN.
   @JsonKey()
-  final String eventSourceARN;
+  final String? eventSourceARN;
 
   /// Aws Region this event was emitted from
   @JsonKey()
-  final String awsRegion;
+  final String? awsRegion;
 
   factory AwsSQSEventRecord.fromJson(Map<String, dynamic> json) {
     return _$AwsSQSEventRecordFromJson(json);
@@ -66,7 +66,7 @@ class AwsSQSEventRecord extends Event {
 class AwsSQSEvent extends Event {
   /// The SQS message records that have been send with the event.
   @JsonKey(name: 'Records')
-  final List<AwsSQSEventRecord> records;
+  final List<AwsSQSEventRecord>? records;
 
   factory AwsSQSEvent.fromJson(Map<String, dynamic> json) {
     return _$AwsSQSEventFromJson(json);

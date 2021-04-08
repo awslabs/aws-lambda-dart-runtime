@@ -9,15 +9,15 @@ part 'dynamodb_event.g.dart';
 class AwsDynamoDBUpdateRecord extends Event {
   /// Keys ...
   @JsonKey(name: 'Keys')
-  final Map<String, dynamic> keys;
+  final Map<String, dynamic>? keys;
 
   /// New Image ...
   @JsonKey(name: 'NewImage')
-  final Map<String, dynamic> oldImage;
+  final Map<String, dynamic>? oldImage;
 
   /// Old Image ....
   @JsonKey(name: 'OldImage')
-  final Map<String, dynamic> newImage;
+  final Map<String, dynamic>? newImage;
 
   factory AwsDynamoDBUpdateRecord.fromJson(Map<String, dynamic> json) =>
       _$AwsDynamoDBUpdateRecordFromJson(json);
@@ -32,27 +32,27 @@ class AwsDynamoDBUpdateRecord extends Event {
 class AwsDynamoDBUpdateEventRecord {
   /// Event Id ...
   @JsonKey()
-  final String eventId;
+  final String? eventId;
 
   /// Event Name ...
   @JsonKey()
-  final String eventName;
+  final String? eventName;
 
   /// Event Source ...
   @JsonKey()
-  final String eventSource;
+  final String? eventSource;
 
   /// Event Version ...
   @JsonKey()
-  final String eventVersion;
+  final String? eventVersion;
 
   /// AWS Region ...
   @JsonKey()
-  final String awsRegion;
+  final String? awsRegion;
 
   /// Event Source ARN ...
   @JsonKey()
-  final String eventSourceARN;
+  final String? eventSourceARN;
 
   factory AwsDynamoDBUpdateEventRecord.fromJson(Map<String, dynamic> json) =>
       _$AwsDynamoDBUpdateEventRecordFromJson(json);
@@ -73,7 +73,7 @@ class AwsDynamoDBUpdateEventRecord {
 class AwsDynamoDBUpdateEvent extends Event {
   /// awslogs ...
   @JsonKey(name: 'Records')
-  final List<AwsDynamoDBUpdateEventRecord> records;
+  final List<AwsDynamoDBUpdateEventRecord>? records;
 
   factory AwsDynamoDBUpdateEvent.fromJson(Map<String, dynamic> json) =>
       _$AwsDynamoDBUpdateEventFromJson(json);

@@ -7,12 +7,12 @@ import 'package:test/test.dart';
 final file = 'data/cloudwatch_event.json';
 
 final String contents = File(file).readAsStringSync();
-final json = jsonDecode(contents) as Map<String, dynamic>;
+final json = jsonDecode(contents) as Map<String, dynamic>?;
 
 void main() {
   group('cloudwatch_default', () {
     test('json got parsed and creates an event', () async {
-      final event = AwsCloudwatchEvent.fromJson(json);
+      final event = AwsCloudwatchEvent.fromJson(json!);
 
       expect(event.account, equals('1234567890'));
       expect(event.region, equals('eu-west-1'));

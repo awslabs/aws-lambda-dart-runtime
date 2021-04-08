@@ -8,7 +8,7 @@ part 's3_event.g.dart';
 @JsonSerializable()
 class AwsS3Event extends Event {
   @JsonKey(name: 'Records')
-  final List<AwsS3EventRecord> records;
+  final List<AwsS3EventRecord>? records;
 
   const AwsS3Event({this.records});
 
@@ -21,15 +21,15 @@ class AwsS3Event extends Event {
 /// Notifcation Event for Lambda in S3.
 @JsonSerializable()
 class AwsS3EventRecord {
-  final String eventVersion;
-  final String eventSource;
-  final String awsRegion;
-  final DateTime eventTime;
-  final String eventName;
-  final AwsS3UserIdentity userIdentity;
-  final Map<String, String> requestParameters;
-  final Map<String, String> responseElements;
-  final AwsS3Data s3;
+  final String? eventVersion;
+  final String? eventSource;
+  final String? awsRegion;
+  final DateTime? eventTime;
+  final String? eventName;
+  final AwsS3UserIdentity? userIdentity;
+  final Map<String, String>? requestParameters;
+  final Map<String, String>? responseElements;
+  final AwsS3Data? s3;
 
   const AwsS3EventRecord(
       {this.eventName,
@@ -50,10 +50,10 @@ class AwsS3EventRecord {
 
 @JsonSerializable()
 class AwsS3Data {
-  String s3SchemaVersion;
-  String configurationId;
-  AwsS3Bucket bucket;
-  AWSS3EventObject object;
+  String? s3SchemaVersion;
+  String? configurationId;
+  AwsS3Bucket? bucket;
+  AWSS3EventObject? object;
 
   AwsS3Data(
       {this.s3SchemaVersion, this.configurationId, this.bucket, this.object});
@@ -66,9 +66,9 @@ class AwsS3Data {
 
 @JsonSerializable()
 class AwsS3Bucket {
-  String name;
-  AwsS3UserIdentity ownerIdentity;
-  String arn;
+  String? name;
+  AwsS3UserIdentity? ownerIdentity;
+  String? arn;
 
   AwsS3Bucket({this.name, this.ownerIdentity, this.arn});
 
@@ -80,10 +80,10 @@ class AwsS3Bucket {
 
 @JsonSerializable()
 class AWSS3EventObject {
-  String key;
-  int size;
-  String eTag;
-  String sequencer;
+  String? key;
+  int? size;
+  String? eTag;
+  String? sequencer;
 
   AWSS3EventObject({this.key, this.size, this.eTag, this.sequencer});
 
@@ -95,7 +95,7 @@ class AWSS3EventObject {
 
 @JsonSerializable()
 class AwsS3UserIdentity {
-  String principalId;
+  String? principalId;
 
   AwsS3UserIdentity({this.principalId});
 

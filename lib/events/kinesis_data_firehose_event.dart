@@ -8,15 +8,15 @@ part 'kinesis_data_firehose_event.g.dart';
 class AwsKinesisFirehoseData extends Event {
   /// Record ID ...
   @JsonKey()
-  final String recordId;
+  final String? recordId;
 
   /// Approximated Arrival Timestamp ...
   @JsonKey()
-  final int approximateArrivalTimestamp;
+  final int? approximateArrivalTimestamp;
 
   /// Data ...
   @JsonKey()
-  final String data;
+  final String? data;
 
   factory AwsKinesisFirehoseData.fromJson(Map<String, dynamic> json) {
     return _$AwsKinesisFirehoseDataFromJson(json);
@@ -33,19 +33,19 @@ class AwsKinesisFirehoseData extends Event {
 class AwsKinesisFirehoseDataEvent {
   /// Invocation ID ...
   @JsonKey()
-  final String invocationId;
+  final String? invocationId;
 
   /// Delivery Stream ARN ...
   @JsonKey()
-  final String deliveryStreamArn;
+  final String? deliveryStreamArn;
 
   /// Region ...
   @JsonKey()
-  final String region;
+  final String? region;
 
   /// Records ...
   @JsonKey()
-  final List<AwsKinesisFirehoseData> records;
+  final List<AwsKinesisFirehoseData>? records;
 
   factory AwsKinesisFirehoseDataEvent.fromJson(Map<String, dynamic> json) {
     return _$AwsKinesisFirehoseDataEventFromJson(json);

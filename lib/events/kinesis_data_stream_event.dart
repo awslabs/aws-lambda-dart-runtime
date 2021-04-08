@@ -8,23 +8,23 @@ part 'kinesis_data_stream_event.g.dart';
 class AwsKinesisDataStream extends Event {
   /// Partition Key ...
   @JsonKey()
-  final String partitionKey;
+  final String? partitionKey;
 
   /// Kinesis Schema Version ...
   @JsonKey()
-  final String kinesisSchemaVersion;
+  final String? kinesisSchemaVersion;
 
   /// Data ...
   @JsonKey()
-  final String data;
+  final String? data;
 
   /// Sequenzer Number ...
   @JsonKey()
-  final String sequenceNumber;
+  final String? sequenceNumber;
 
   /// Approximate Arrival Timestamp ...
   @JsonKey()
-  final int approximateArrivalTimestamp;
+  final int? approximateArrivalTimestamp;
 
   factory AwsKinesisDataStream.fromJson(Map<String, dynamic> json) {
     return _$AwsKinesisDataStreamFromJson(json);
@@ -45,35 +45,35 @@ class AwsKinesisDataStream extends Event {
 class AwsKinesisDataStreamRecord {
   /// Data ...
   @JsonKey()
-  final AwsKinesisDataStream kinesis;
+  final AwsKinesisDataStream? kinesis;
 
   /// Source of the Event.
   @JsonKey()
-  final String eventSource;
+  final String? eventSource;
 
   /// Event Id ...
   @JsonKey()
-  final String eventID;
+  final String? eventID;
 
   /// Event Version ...
   @JsonKey()
-  final String eventVersion;
+  final String? eventVersion;
 
   /// Event Name ...
   @JsonKey()
-  final String eventName;
+  final String? eventName;
 
   /// Event Source ARN ...
   @JsonKey()
-  final String eventSourceARN;
+  final String? eventSourceARN;
 
   /// Invokey Identity ARN ...
   @JsonKey()
-  final String invokeIdentityArn;
+  final String? invokeIdentityArn;
 
   /// Aws Region this event was emitted from
   @JsonKey()
-  final String awsRegion;
+  final String? awsRegion;
 
   factory AwsKinesisDataStreamRecord.fromJson(Map<String, dynamic> json) {
     return _$AwsKinesisDataStreamRecordFromJson(json);
@@ -97,7 +97,7 @@ class AwsKinesisDataStreamRecord {
 class AwsKinesisDataStreamEvent extends Event {
   /// The SQS message records that have been send with the event.
   @JsonKey(name: 'Records')
-  final List<AwsKinesisDataStreamRecord> records;
+  final List<AwsKinesisDataStreamRecord>? records;
 
   factory AwsKinesisDataStreamEvent.fromJson(Map<String, dynamic> json) {
     return _$AwsKinesisDataStreamEventFromJson(json);
