@@ -2,6 +2,8 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
+
 /// Next invocation data wraps the data from the
 /// invocation endpoint of the Lambda Runtime Interface.
 class NextInvocation {
@@ -20,43 +22,41 @@ class NextInvocation {
   final String requestId;
 
   /// Deadline milliseconds is the setting for ultimate cancelation of the invocation.
-  final String deadlineMs;
+  final String? deadlineMs;
 
   /// Invoked function ARN is the identifier of the function.
-  final String invokedFunctionArn;
+  final String? invokedFunctionArn;
 
   /// Tracing id is the identifier for tracing like X-Ray.
-  final String traceId;
+  final String? traceId;
 
   /// Client context is the context that is provided to the function.
-  final String clientContext;
+  final String? clientContext;
 
   /// Cognito identity is the identity that maybe is used for authorizing the request.
-  final String cognitoIdentity;
+  final String? cognitoIdentity;
 
   /// Digesting a [HttpClientResponse] into a [NextInvocation].
-  static Future<NextInvocation> fromResponse(
-      HttpClientResponse response) async {
-    return NextInvocation(
-        response: json
-            .decode((await response.transform(Utf8Decoder()).toList()).first),
-        requestId: response.headers.value(runtimeRequestId),
-        deadlineMs: response.headers.value(runtimeDeadlineMs),
-        invokedFunctionArn: response.headers.value(runtimeInvokedFunctionArn),
-        traceId: response.headers.value(runtimeTraceId),
-        clientContext: response.headers.value(runtimeClientContext),
-        cognitoIdentity: response.headers.value(runtimeCognitoIdentity));
-  }
+  static Future<NextInvocation> fromResponse(http.Response response) async =>
+      NextInvocation(
+          response: (json.decode(utf8.decode(response.bodyBytes)) as Map)
+              .cast<String, dynamic>(),
+          requestId: response.headers[runtimeRequestId]!,
+          deadlineMs: response.headers[runtimeDeadlineMs],
+          invokedFunctionArn: response.headers[runtimeInvokedFunctionArn],
+          traceId: response.headers[runtimeTraceId],
+          clientContext: response.headers[runtimeClientContext],
+          cognitoIdentity: response.headers[runtimeCognitoIdentity]);
 
-  const NextInvocation(
-      {this.requestId,
-      this.deadlineMs,
-      this.traceId,
-      this.clientContext,
-      this.cognitoIdentity,
-      this.invokedFunctionArn,
-      this.response})
-      : assert(requestId != null);
+  const NextInvocation({
+    required this.requestId,
+    this.deadlineMs,
+    this.traceId,
+    this.clientContext,
+    this.cognitoIdentity,
+    this.invokedFunctionArn,
+    required this.response,
+  });
 }
 
 /// Invocation result is the result that the invoked handler
@@ -71,9 +71,7 @@ class InvocationResult {
   /// any json-encodable data type.
   final dynamic body;
 
-  const InvocationResult(this.requestId, this.body)
-      : assert(requestId != null),
-        assert(body != null);
+  const InvocationResult(this.requestId, this.body) : assert(body != null);
 }
 
 /// Invocation error occurs when there has been an
@@ -92,8 +90,7 @@ class InvocationError {
   /// representation for the Runtime Interface.
   Map<String, dynamic> toJson() => {
         'errorMessage': error.toString(),
-        'errorType': "InvocationError",
-        'stackTrace': this.stackTrace.toString()
+        'errorType': 'InvocationError',
       };
 
   const InvocationError(this.error, this.stackTrace);
@@ -103,7 +100,7 @@ class InvocationError {
 /// It is implemented as a singleton whereby [Client.instance]
 /// always returns the already instantiated client.
 class Client {
-  HttpClient _client;
+  late http.Client _client;
 
   static final Client _singleton = Client._internal();
 
@@ -112,53 +109,45 @@ class Client {
   }
 
   Client._internal() {
-    _client = HttpClient();
+    _client = http.Client();
   }
 
   static const runtimeApiVersion = '2018-06-01';
-  static final runtimeApi = Platform.environment["AWS_LAMBDA_RUNTIME_API"];
 
-  /// Get the next inovation from the AWS Lambda Runtime Interface (see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-api.html).
+  static String? get runtimeApi =>
+      Platform.environment['AWS_LAMBDA_RUNTIME_API'];
+
+  static String? get handlerName => Platform.environment['_HANDLER'];
+
+  /// Get the next invocation from the AWS Lambda Runtime Interface (see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-api.html).
   Future<NextInvocation> getNextInvocation() async {
-    final request = await _client.getUrl(Uri.parse(
-        'http://${runtimeApi}/${runtimeApiVersion}/runtime/invocation/next'));
-    final response = await request.close();
+    final response = await _client.get(Uri.parse(
+        'http://$runtimeApi/$runtimeApiVersion/runtime/invocation/next'));
     return NextInvocation.fromResponse(response);
   }
 
   /// Post the invocation response to the AWS Lambda Runtime Interface.
-  Future<HttpClientResponse> postInvocationResponse(
-      InvocationResult result) async {
-    final request = await _client.postUrl(
+  Future<http.Response> postInvocationResponse(
+      String? requestId, dynamic payload) async {
+    return await _client.post(
       Uri.parse(
-        'http://${runtimeApi}/${runtimeApiVersion}/runtime/invocation/${result.requestId}/response',
+        'http://$runtimeApi/$runtimeApiVersion/runtime/invocation/$requestId/response',
       ),
+      body: jsonEncode(payload),
     );
-    request.add(
-      utf8.encode(
-        json.encode(result.body),
-      ),
-    );
-
-    return await request.close();
   }
 
   /// Post an invocation error to the AWS Lambda Runtime Interface.
   /// It takes in an [InvocationError] and the [requestId]. The [requestId]
   /// is used to map the error to the execution.
-  Future<HttpClientResponse> postInvocationError(
+  Future<http.Response> postInvocationError(
       String requestId, InvocationError err) async {
-    final request = await _client.postUrl(
+    return await _client.post(
       Uri.parse(
-        'http://${runtimeApi}/${runtimeApiVersion}/runtime/invocation/$requestId/error',
+        'http://$runtimeApi/$runtimeApiVersion/runtime/invocation/$requestId/error',
       ),
+      body: jsonEncode(err),
+      headers: {'Content-type': 'application/json'},
     );
-    request.add(
-        utf8.encode(
-            json.encode(err)
-        )
-    );
-
-    return await request.close();
   }
 }

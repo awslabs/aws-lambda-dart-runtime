@@ -1,11 +1,11 @@
 name: example
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   aws_lambda_dart_runtime:
-    git: https://github.com/awslabs/aws-lambda-dart-runtime.git
+    path: ..
 
 dev_dependencies:
   build_runner:
